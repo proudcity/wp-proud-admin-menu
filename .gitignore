@@ -33,3 +33,4 @@ tags
 *.bak
 cache/*
 managewp/*
+node_modules/*
