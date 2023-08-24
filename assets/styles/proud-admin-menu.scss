@@ -3,28 +3,57 @@ $color-sidebar-bg: #f7f7f7; //#F8F8F8
 $color-sidebar-border: #ebebeb;
 $color-sidebar-link: #4a4a4a;
 $color-sidebar-submenu-bg: #ebebeb;
-$color-sidebar-active-bg: #F2F2F2;
+$color-sidebar-active-bg: #dcdcde;
 $color-sidebar-active-color: #000;
 $color-sidebar-caret-color: #f1f1f1;
 $color-sidebar-submenu-link-color: $color-sidebar-link;
 $color-sidebar-heading: #929292;
+$color-sidebar-hover: #dcdcde;
 
 $font-size-sidebar-link: 14px;
 $padding-sidebar-link: 10px 0 10px 10px;
+$sidebar-width: 228px;
 
 
 #adminmenu,
 #adminmenuwrap,
 #adminmenuback{
 	background-color: $color-sidebar-bg;
-	//width: $sidebar-width;
+	width: $sidebar-width;
 }
 
 #adminmenu{
 
 	a{
 		color: $color-sidebar-link;
+
+		&:hover{
+			background-color: $color-sidebar-hover;
+			color: black;
+		} // &:hover
 	} // a
+
+	li.menu-top{
+		&:hover{
+			background-color: $color-sidebar-hover;
+			color:black;
+
+			div.wp-menu-image:before,
+			.dashicons-before{
+				color:black;
+			}
+		}
+	}
+
+	li.opensub{
+
+		>a.menu-top,
+		&:hover{
+			background-color: $color-sidebar-hover;
+			color:black;
+		}
+
+	} // li.opensub
 
 	div.wp-menu-image:before,
 	.dashicons-before{
@@ -33,4 +62,11 @@ $padding-sidebar-link: 10px 0 10px 10px;
 
 	#collapse-menu{display:none;}
 
+
+
 } // #adminmenu
+
+/** SUBMENU **/
+#adminmenu .wp-submenu{
+	width: $sidebar-width;
+}

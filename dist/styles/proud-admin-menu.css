@@ -1,3 +1,3 @@
-#adminmenu,#adminmenuback,#adminmenuwrap{background-color:#f7f7f7}#adminmenu .dashicons-before,#adminmenu a,#adminmenu div.wp-menu-image:before{color:#4a4a4a}#adminmenu #collapse-menu{display:none}
+#adminmenu,#adminmenuback,#adminmenuwrap{background-color:#f7f7f7;width:228px}#adminmenu a{color:#4a4a4a}#adminmenu a:hover,#adminmenu li.menu-top:hover{background-color:#dcdcde;color:#000}#adminmenu li.menu-top:hover .dashicons-before,#adminmenu li.menu-top:hover div.wp-menu-image:before{color:#000}#adminmenu li.opensub:hover,#adminmenu li.opensub>a.menu-top{background-color:#dcdcde;color:#000}#adminmenu .dashicons-before,#adminmenu div.wp-menu-image:before{color:#4a4a4a}#adminmenu #collapse-menu{display:none}#adminmenu .wp-submenu{width:228px}
 
 /*# sourceMappingURL=proud-admin-menu.css.map*/
