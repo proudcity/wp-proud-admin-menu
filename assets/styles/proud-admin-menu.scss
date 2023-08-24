@@ -1,0 +1,36 @@
+// Dark theme
+$color-sidebar-bg: #f7f7f7; //#F8F8F8
+$color-sidebar-border: #ebebeb;
+$color-sidebar-link: #4a4a4a;
+$color-sidebar-submenu-bg: #ebebeb;
+$color-sidebar-active-bg: #F2F2F2;
+$color-sidebar-active-color: #000;
+$color-sidebar-caret-color: #f1f1f1;
+$color-sidebar-submenu-link-color: $color-sidebar-link;
+$color-sidebar-heading: #929292;
+
+$font-size-sidebar-link: 14px;
+$padding-sidebar-link: 10px 0 10px 10px;
+
+
+#adminmenu,
+#adminmenuwrap,
+#adminmenuback{
+	background-color: $color-sidebar-bg;
+	//width: $sidebar-width;
+}
+
+#adminmenu{
+
+	a{
+		color: $color-sidebar-link;
+	} // a
+
+	div.wp-menu-image:before,
+	.dashicons-before{
+		color: $color-sidebar-link;
+	} // dashicons-before
+
+	#collapse-menu{display:none;}
+
+} // #adminmenu

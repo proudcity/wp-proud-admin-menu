@@ -1,0 +1,32 @@
+{
+  "name": "wp-proud-admin",
+  "version": "1.0.0",
+  "description": "Administration theme, permissions tweaks, and ProudCity settings pages. [ProudCity](http://proudcity.com) is a Wordpress platform for modern, standards-compliant municipal websites.",
+  "main": "webpack.mix.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "laravel-mix": "^6.0.49",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.56.0",
+    "sass-loader": "^12.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "projectsetup": "bower install && rm -rf bower_components/proudcity-patterns && git clone git@github.com:proudcity/proudcity-patterns.git bower_components/proudcity-patterns",
+    "projectupdate": "rm -rf bower_components/proudcity-patterns && git clone git@github.com:proudcity/proudcity-patterns.git bower_components/proudcity-patterns"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proudcity/wp-proud-admin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/proudcity/wp-proud-admin/issues"
+  },
+  "homepage": "https://github.com/proudcity/wp-proud-admin#readme"
+}

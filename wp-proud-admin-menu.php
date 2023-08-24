@@ -60,9 +60,7 @@ class ProudCity_Admin_Menu{
 		$this->constants();
 		$this->includes();
 
-		add_action( 'admin_init', function(){ echo 'test'; } );
-
-		add_action( 'admin_notices', array( $this, 'check_required_plugins' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
 		// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
@@ -72,13 +70,33 @@ class ProudCity_Admin_Menu{
 	} // init
 
 	/**
+	* Registers and enqueues scripts and styles
+	*
+	* @uses    wp_enqueue_style
+	* @uses    wp_enqueue_script
+	*
+	* @since   2023.08.24
+	* @author  SFNdesign, Curtis McHale
+	*/
+	public function admin_enqueue(){
+
+		$plugin_data = get_plugin_data( __FILE__ );
+// @todo if local use time()
+		$version = $plugin_data['Version'];
+
+		// styles plugin
+		wp_enqueue_style( 'wp_proud_admin_menu_styles', plugins_url( '/wp-proud-admin-menu/dist/styles/proud-admin-menu.css' ), '', esc_attr( $version ), 'all');
+
+	}
+
+	/**
 	 * Gives us any constants we need in the plugin
 	 *
 	 * @since 2023.08.24
 	 */
 	public function constants(){
 
-		define( 'PROUDCITY_ADMIN_MENU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); }
+		define( 'PROUDCITY_ADMIN_MENU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 	}
 
