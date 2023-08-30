@@ -74,47 +74,55 @@ class ProudCity_Admin_Menu{
 	public static function admin_menu_order(){
 
 		global $menu, $submenu;
+		
+		/**
+		 *  Reindex the array so that anything I don't touch gets pushed
+		 *  to the bottom of the menu
+		 */
+		$start_index = 999;
+		$menu = array_combine(
+				range( $start_index,
+					count($menu) + ( $start_index-1) ),
+					array_values( $menu )
+		);
 
-		$sepkey = self::get_key( 'separator1', $menu );
-		$sep1 = $menu[$sepkey];
-		unset( $menu[$sepkey] );
+		// view site
+		$view_site = array(
+			'0' => 'View Site',
+			'1' => 'read',
+			'2' => site_url(),
+			'3' => '',
+			'4' => 'menu-top menu-view-site',
+			'5' => 'menu-view-site',
+			'6' => 'dashicons-admin-site',
+		);
+		$menu[10] = $view_site;
 
-		$wp_dash_key = self::get_key( 'index.php', $menu );
+		// WP Dashboard
+		$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
 		$wp_dash = $menu[$wp_dash_key];
+		$wp_dash[4] = 'menu-icon-dashboard proud-admin-menu';
 		unset( $menu[$wp_dash_key] );
-
-		$links_key = self::get_key( 'menu-links', $menu );
-		$links = $menu[$links_key];
-		unset( $menu[$links_key] );
-
-		$media_key = self::get_key( 'upload.php', $menu );
-		$media = $menu[$media_key];
-		unset( $menu[$media_key] );
-
-		$comments_key = self::get_key( 'menu-comments', $menu );
-		$comments = $menu[$comments_key];
-		unset( $menu[$comments_key] );
-
+		$menu[280] = $wp_dash;
+		
+		// Posts/News
 		$posts_key = self::get_key( 'menu-posts', $menu );
 		$posts = $menu[$posts_key];
 		$posts[0] = 'News';
+		$posts[6] = 'dashicons-text-page';
 		unset( $menu[$posts_key] );
-
-		$posts_key = self::get_key( 'menu-posts', $menu );
-		$posts = $menu[$posts_key];
-		$posts[0] = 'News';
-		unset( $menu[$posts_key] );
+		$menu[60] = $posts;
 
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
 // @todo add admin items with custom background
 // @todo add unknown items above admin items
 // 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
-
+/*
 		echo '<pre>';
 		print_r( $menu );
 		echo '</pre>';
-
+*/
 	}
 
 	/**
