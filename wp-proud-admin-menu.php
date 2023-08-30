@@ -75,9 +75,35 @@ class ProudCity_Admin_Menu{
 
 		global $menu, $submenu;
 
-		$sep = 'separator1';
-		$sepkey = self::get_key( $sep, $menu );
-		$thing = $menu[$sepkey];
+		$sepkey = self::get_key( 'separator1', $menu );
+		$sep1 = $menu[$sepkey];
+		unset( $menu[$sepkey] );
+
+		$wp_dash_key = self::get_key( 'index.php', $menu );
+		$wp_dash = $menu[$wp_dash_key];
+		unset( $menu[$wp_dash_key] );
+
+		$links_key = self::get_key( 'menu-links', $menu );
+		$links = $menu[$links_key];
+		unset( $menu[$links_key] );
+
+		$media_key = self::get_key( 'upload.php', $menu );
+		$media = $menu[$media_key];
+		unset( $menu[$media_key] );
+
+		$comments_key = self::get_key( 'menu-comments', $menu );
+		$comments = $menu[$comments_key];
+		unset( $menu[$comments_key] );
+
+		$posts_key = self::get_key( 'menu-posts', $menu );
+		$posts = $menu[$posts_key];
+		$posts[0] = 'News';
+		unset( $menu[$posts_key] );
+
+		$posts_key = self::get_key( 'menu-posts', $menu );
+		$posts = $menu[$posts_key];
+		$posts[0] = 'News';
+		unset( $menu[$posts_key] );
 
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
@@ -86,7 +112,7 @@ class ProudCity_Admin_Menu{
 // 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
 
 		echo '<pre>';
-		print_r( $thing );
+		print_r( $menu );
 		echo '</pre>';
 
 	}
