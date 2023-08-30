@@ -62,12 +62,66 @@ class ProudCity_Admin_Menu{
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
+		add_action( 'admin_menu', array( $this, 'admin_menu_order' ), 9999 );
+
 		// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall' ) );
 
 	} // init
+
+	public static function admin_menu_order(){
+
+		global $menu, $submenu;
+
+		$sep = 'separator1';
+		$sepkey = self::get_key( $sep, $menu );
+		$thing = $menu[$sepkey];
+
+// @todo get each item I know about in a variable
+// @todo put regular items in the order we want
+// @todo add admin items with custom background
+// @todo add unknown items above admin items
+// 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
+
+		echo '<pre>';
+		print_r( $thing );
+		echo '</pre>';
+
+	}
+
+	/**
+	 * Gets the parent key for a given menu item.
+	 *
+	 * Doesn't travers multi-dimensional arrays because we don't need that for
+	 * searching through our menus
+	 *
+	 * @since 2023.08.30
+	 * @author Curtis
+	 * @access private
+	 *
+	 * @param 	string 			$searching_for 			required 				Any child item in a menu
+	 * @param 	array 			$array 					required 				The menu global
+	 * @return 	int 			$parent_key 									The parent key
+	 */
+	private static function get_key( $searching_for, $array ){
+
+		foreach( $array as $main_key => $main_value ){
+			$parent_key = $main_key;
+
+			foreach( $main_value as $key => $value ){
+
+				if ( $searching_for == $value ){
+					return $parent_key;
+				}
+
+			} // foreach $main_value
+
+		} // foreach $array as $main_key
+
+	} // get_keyi
+
 
 	/**
 	* Registers and enqueues scripts and styles
