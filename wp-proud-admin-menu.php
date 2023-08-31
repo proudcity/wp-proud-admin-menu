@@ -99,6 +99,18 @@ class ProudCity_Admin_Menu{
 		$comments_key = self::get_key( 'menu-comments', $menu );
 		unset( $menu[$comments_key] );
 
+		// separator 2
+		$sep2_key = self::get_key( 'separator2', $menu );
+		$sep2 = $menu[$sep2_key];
+		unset( $menu[$sep2_key] );
+		//$menu[270] = $sep1; If we want this in a new spot then we need to set it again
+
+		// separator last
+		$seplast_key = self::get_key( 'separator-last', $menu );
+		$seplast = $menu[$seplast_key];
+		unset( $menu[$seplast_key] );
+		//$menu[270] = $sep1; If we want this in a new spot then we need to set it again
+
 		/** ---- Setting the menu how we want it ----- **/
 		// view site
 		$view_site = array(
@@ -111,6 +123,24 @@ class ProudCity_Admin_Menu{
 			'6' => 'dashicons-admin-site',
 		);
 		$menu[10] = $view_site;
+
+		// PC Analytics
+		$pca_key = self::get_key( 'toplevel_page_pc-analytics', $menu );
+		$pca = $menu[$pca_key];
+		unset( $menu[$pca_key] );
+		$menu[20] = $pca;
+
+		// PC Dashboard
+		$pcd_key = self::get_key( 'toplevel_page_proud_dashboard', $menu );
+		$pcd = $menu[$pcd_key];
+		unset( $menu[$pcd_key] );
+		$menu[30] = $pcd;
+
+		// Site Kit
+		$gsk_key = self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu );
+		$gsk = $menu[$gsk_key];
+		unset( $menu[$gsk_key] );
+		$menu[40] = $gsk;
 
 		// Pages
 		$pages_key = self::get_key( 'menu-pages', $menu );
@@ -138,6 +168,12 @@ class ProudCity_Admin_Menu{
 		unset( $menu[$doc_key] );
 		$menu[80] = $doc;
 
+		// Forms
+		$gf_key = self::get_key( 'toplevel_page_gf_edit_forms', $menu );
+		$gf = $menu[$gf_key];
+		unset( $menu[$gf_key] );
+		$menu[90] = $gf;
+
 		// Events
 		$events_key = self::get_key( 'menu-posts-event', $menu );
 		$events = $menu[$events_key];
@@ -149,6 +185,13 @@ class ProudCity_Admin_Menu{
 		$meet = $menu[$meet_key];
 		unset( $menu[$meet_key] );
 		$menu[110] = $meet;
+
+		// Payments
+		$ans_key = self::get_key( 'menu-posts-question', $menu );
+		$ans = $menu[$ans_key];
+		$ans[0] = 'Answers';
+		unset( $menu[$ans_key] );
+		$menu[120] = $ans;
 
 		// Staff Members/Contacts
 		$contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
@@ -168,7 +211,7 @@ class ProudCity_Admin_Menu{
 		$pay = $menu[$pay_key];
 		$pay[6] = 'dashicons-money-alt';
 		unset( $menu[$pay_key] );
-		$menu[110] = $pay;
+		$menu[150] = $pay;
 
 		// Locations
 		$loc_key = self::get_key( 'menu-posts-proud_location', $menu );
@@ -188,12 +231,19 @@ class ProudCity_Admin_Menu{
 		unset( $menu[$media_key] );
 		$menu[180] = $media;
 
-		// separator
-		$sep1_key = self::get_key( 'wp-menu-separator', $menu );
-		$sep1 = $menu[$sep1_key];
-		unset( $menu[$sep1_key] );
-		$menu[270] = $sep1;
+		// Service Center
+		$service_key = self::get_key( 'toplevel_page_service-center', $menu );
+		$service = $menu[$service_key];
+		unset( $menu[$service_key] );
+		$menu[240] = $service;
 
+		// Publish Press/Future
+		$ppf_key = self::get_key( 'toplevel_page_publishpress-future', $menu );
+		$ppf = $menu[$ppf_key];
+		unset( $menu[$ppf_key] );
+		$menu[260] = $ppf;
+
+		/** ---- Proud Admin menu items ----- **/
 		// separator
 		$sep1_key = self::get_key( 'wp-menu-separator', $menu );
 		$sep1 = $menu[$sep1_key];
@@ -203,15 +253,58 @@ class ProudCity_Admin_Menu{
 		// WP Dashboard
 		$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
 		$wp_dash = $menu[$wp_dash_key];
-		$wp_dash[4] = 'menu-icon-dashboard proud-admin-menu';
 		unset( $menu[$wp_dash_key] );
 		$menu[280] = $wp_dash;
+
+		// Appearance
+		$app_key = self::get_key( 'menu-appearance', $menu );
+		$app = $menu[$app_key];
+		unset( $menu[$app_key] );
+		$menu[290] = $app;
+
+		// Elasticpress
+		$ela_key = self::get_key( 'toplevel_page_elasticpress', $menu );
+		$ela = $menu[$ela_key];
+		unset( $menu[$ela_key] );
+		$menu[300] = $ela;
+
+		// WP Users
+		$users_key = self::get_key( 'menu-users', $menu );
+		$users = $menu[$users_key];
+		unset( $menu[$users_key] );
+		$menu[310] = $users;
+
+		// Tools
+		$tools_key = self::get_key( 'menu-tools', $menu );
+		$tools = $menu[$tools_key];
+		unset( $menu[$tools_key] );
+		$menu[320] = $tools;
+
+		// WP Settings
+		$wpsettings_key = self::get_key( 'menu-settings', $menu );
+		$wpsettings = $menu[$wpsettings_key];
+		unset( $menu[$wpsettings_key] );
+		$menu[330] = $wpsettings;
+
+		// Yoast SEO
+		$seo_key = self::get_key( 'toplevel_page_wpseo_dashboard', $menu );
+		$seo = $menu[$seo_key];
+		unset( $menu[$seo_key] );
+		$menu[350] = $seo;
+
+		// Plugins
+		$plug_key = self::get_key( 'menu-plugins', $menu );
+		$plug = $menu[$plug_key];
+		unset( $menu[$plug_key] );
+		$menu[360] = $plug;
 
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
 // @todo add admin items with custom background
 // @todo add unknown items above admin items
 // 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
+// @todo do_action so that plugins can hook this and add themselves in the proper spot
+// @todo conditional check for stuff like MailOptin becausee it is not present on every site
 
 		echo '<pre>';
 		print_r( $menu );
