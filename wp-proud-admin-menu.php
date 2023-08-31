@@ -231,6 +231,18 @@ class ProudCity_Admin_Menu{
 		unset( $menu[$media_key] );
 		$menu[180] = $media;
 
+		// @todo WordPress menus at nav-menu.php 190
+
+		// @todo PC Accounts 200
+
+		// @todo PC Tools 220
+
+		// Proud Setings
+		$pcs_key = self::get_key( 'toplevel_page_proudsettings', $menu );
+		$pcs = $menu[$pcs_key];
+		unset( $menu[$pcs_key] );
+		$menu[230] = $pcs;
+
 		// Service Center
 		$service_key = self::get_key( 'toplevel_page_service-center', $menu );
 		$service = $menu[$service_key];
@@ -286,6 +298,12 @@ class ProudCity_Admin_Menu{
 		unset( $menu[$wpsettings_key] );
 		$menu[330] = $wpsettings;
 
+		// WP Mail SMTP
+		$smtp_key = self::get_key( 'toplevel_page_wp-mail-smtp', $menu );
+		$smtp = $menu[$smtp_key];
+		unset( $menu[$smtp_key] );
+		$menu[340] = $smtp;
+
 		// Yoast SEO
 		$seo_key = self::get_key( 'toplevel_page_wpseo_dashboard', $menu );
 		$seo = $menu[$seo_key];
@@ -297,6 +315,12 @@ class ProudCity_Admin_Menu{
 		$plug = $menu[$plug_key];
 		unset( $menu[$plug_key] );
 		$menu[360] = $plug;
+
+		// Site Origin
+		$siteorigin_key = self::get_key( 'toplevel_page_siteorigin', $menu );
+		$siteorigin = $menu[$siteorigin_key];
+		unset( $menu[$siteorigin_key] );
+		$menu[370] = $siteorigin;
 
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
