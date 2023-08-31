@@ -86,6 +86,20 @@ class ProudCity_Admin_Menu{
 					array_values( $menu )
 		);
 
+		/** ---- unsetting stuff we don't need ----- **/
+		/** By searching early we can remove this    **/
+		/** and thus reduce the search space for     **/
+		/** the rest of the work coming up           **/
+
+		// links
+		$links_key = self::get_key( 'menu-links', $menu );
+		unset( $menu[$links_key] );
+
+		// comments
+		$comments_key = self::get_key( 'menu-comments', $menu );
+		unset( $menu[$comments_key] );
+
+		/** ---- Setting the menu how we want it ----- **/
 		// view site
 		$view_site = array(
 			'0' => 'View Site',
@@ -98,12 +112,11 @@ class ProudCity_Admin_Menu{
 		);
 		$menu[10] = $view_site;
 
-		// WP Dashboard
-		$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
-		$wp_dash = $menu[$wp_dash_key];
-		$wp_dash[4] = 'menu-icon-dashboard proud-admin-menu';
-		unset( $menu[$wp_dash_key] );
-		$menu[280] = $wp_dash;
+		// Pages
+		$pages_key = self::get_key( 'menu-pages', $menu );
+		$pages = $menu[$pages_key];
+		unset( $menu[$pages_key] );
+		$menu[50] = $pages;
 		
 		// Posts/News
 		$posts_key = self::get_key( 'menu-posts', $menu );
@@ -113,16 +126,97 @@ class ProudCity_Admin_Menu{
 		unset( $menu[$posts_key] );
 		$menu[60] = $posts;
 
+		// Departments
+		$dep_key = self::get_key( 'menu-posts-agency', $menu );
+		$dep = $menu[$dep_key];
+		unset( $menu[$dep_key] );
+		$menu[70] = $dep;
+
+		// Documents
+		$doc_key = self::get_key( 'menu-posts-document', $menu );
+		$doc = $menu[$doc_key];
+		unset( $menu[$doc_key] );
+		$menu[80] = $doc;
+
+		// Events
+		$events_key = self::get_key( 'menu-posts-event', $menu );
+		$events = $menu[$events_key];
+		unset( $menu[$events_key] );
+		$menu[100] = $events;
+
+		// Meetings
+		$meet_key = self::get_key( 'menu-posts-meeting', $menu );
+		$meet = $menu[$meet_key];
+		unset( $menu[$meet_key] );
+		$menu[110] = $meet;
+
+		// Staff Members/Contacts
+		$contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
+		$contacts = $menu[$contacts_key];
+		$posts[0] = 'Contacts';
+		unset( $menu[$contacts_key] );
+		$menu[130] = $contacts;
+
+		// Issues
+		$issues_key = self::get_key( 'menu-posts-issue', $menu );
+		$issues = $menu[$issues_key];
+		unset( $menu[$issues_key] );
+		$menu[140] = $issues;
+
+		// Payments
+		$pay_key = self::get_key( 'menu-posts-payment', $menu );
+		$pay = $menu[$pay_key];
+		$pay[6] = 'dashicons-money-alt';
+		unset( $menu[$pay_key] );
+		$menu[110] = $pay;
+
+		// Locations
+		$loc_key = self::get_key( 'menu-posts-proud_location', $menu );
+		$loc = $menu[$loc_key];
+		unset( $menu[$loc_key] );
+		$menu[160] = $loc;
+
+		// Jobs
+		$jobs_key = self::get_key( 'menu-posts-job_listing', $menu );
+		$jobs = $menu[$jobs_key];
+		unset( $menu[$jobs_key] );
+		$menu[170] = $jobs;
+
+		// media
+		$media_key = self::get_key( 'menu-media', $menu );
+		$media = $menu[$media_key];
+		unset( $menu[$media_key] );
+		$menu[180] = $media;
+
+		// separator
+		$sep1_key = self::get_key( 'wp-menu-separator', $menu );
+		$sep1 = $menu[$sep1_key];
+		unset( $menu[$sep1_key] );
+		$menu[270] = $sep1;
+
+		// separator
+		$sep1_key = self::get_key( 'wp-menu-separator', $menu );
+		$sep1 = $menu[$sep1_key];
+		unset( $menu[$sep1_key] );
+		$menu[270] = $sep1;
+
+		// WP Dashboard
+		$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
+		$wp_dash = $menu[$wp_dash_key];
+		$wp_dash[4] = 'menu-icon-dashboard proud-admin-menu';
+		unset( $menu[$wp_dash_key] );
+		$menu[280] = $wp_dash;
+
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
 // @todo add admin items with custom background
 // @todo add unknown items above admin items
 // 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
-/*
+
 		echo '<pre>';
 		print_r( $menu );
 		echo '</pre>';
-*/
+
 	}
 
 	/**
