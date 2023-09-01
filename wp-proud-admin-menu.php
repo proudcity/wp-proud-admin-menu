@@ -62,6 +62,7 @@ class ProudCity_Admin_Menu{
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
 
+		add_action( 'admin_menu', array( $this, 'custom_menu_items' ), 1 );
 		add_action( 'admin_menu', array( $this, 'admin_menu_order' ), 9999 );
 
 		// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
@@ -71,6 +72,18 @@ class ProudCity_Admin_Menu{
 
 	} // init
 
+	public static function custom_menu_items(){
+
+
+	}
+
+	/**
+	 * Manually orders the array of menu items
+	 *
+	 * @since 2023.08.31
+	 * @access public
+	 * @author Curtis
+	 */
 	public static function admin_menu_order(){
 
 		global $menu, $submenu;
@@ -232,6 +245,17 @@ class ProudCity_Admin_Menu{
 		$menu[180] = $media;
 
 		// @todo WordPress menus at nav-menu.php 190
+		// menu
+		$wp_menu = array(
+			'0' => 'Menu',
+			'1' => 'read',
+			'2' => admin_url() . 'nav-menus.php',
+			'3' => '',
+			'4' => 'menu-top menu-wp-menu',
+			'5' => 'menu-wp-menu',
+			'6' => 'dashicons-menu',
+		);
+		$menu[190] = $wp_menu;
 
 		// @todo PC Accounts 200
 
@@ -329,11 +353,11 @@ class ProudCity_Admin_Menu{
 // 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
 // @todo do_action so that plugins can hook this and add themselves in the proper spot
 // @todo conditional check for stuff like MailOptin becausee it is not present on every site
-
+/*
 		echo '<pre>';
 		print_r( $menu );
 		echo '</pre>';
-
+*/
 	}
 
 	/**
