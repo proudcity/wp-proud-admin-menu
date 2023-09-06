@@ -22,8 +22,8 @@ $sidebar-width: 228px;
 	width: $sidebar-width;
 }
 
-// @todo delete this
-#adminmenuback{display:none !important;}
+// @todo delete this as it's only to view the array when you're mucking with the menu
+//#adminmenuback{display:none !important;}
 
 #adminmenu{
 
@@ -70,6 +70,38 @@ $sidebar-width: 228px;
 } // #adminmenu
 
 /** SUBMENU **/
-#adminmenu .wp-submenu{
-	width: $sidebar-width;
-}
+#adminmenu{
+	.wp-submenu{
+		width: $sidebar-width;
+		background-color:#ebebeb;
+
+		li{
+			&.current{
+				a{
+					background-color:#c3bdbd;
+					color:black;
+
+					&:hover,
+					&:focus{
+						background-color:#c7c7c7;
+						color:black;
+						border-left-color:black;
+					}
+				} // a
+			} // li &.current
+
+			a{
+				color: $color-sidebar-link;
+
+				&:hover,
+				&:focus{
+					background-color:#c7c7c7;
+					color:black;
+					border-left-color:black;
+				}
+			} // a
+		} // li
+
+	} // .wp-submenu
+} // #adminmenu
+/** end SUBMENU **/
