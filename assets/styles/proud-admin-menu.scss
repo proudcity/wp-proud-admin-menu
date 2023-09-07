@@ -34,7 +34,31 @@ $sidebar-width: 228px;
 			background-color: $color-sidebar-hover;
 			color: black;
 		} // &:hover
+
 	} // a
+
+	li{
+
+		>a.menu-top:focus{
+			background-color: $color-sidebar-hover;
+			color: black;
+
+			div.wp-menu-image:before{
+				color:black;
+			}
+		} // >a.menu-top:focus
+
+		a.menu-top:active{
+			background-color:black;
+			color:white;
+			border-left:5px solid white;
+
+			div.wp-menu-image:before{
+				color:white;
+			}
+		} // a.menu-top:active
+
+	}// li
 
 	li.menu-top{
 		&:hover{
@@ -130,3 +154,42 @@ $sidebar-width: 228px;
 
 } // #adminmenu
 /** end SUBMENU **/
+
+/** Admin Menu Items **/
+#adminmenu{
+
+	li.menu-icon-dashboard{
+		border-top:5px solid black;
+	}
+
+	li.toplevel_page_siteorigin{
+		border-bottom:5px solid black;
+	}
+
+	li.menu-icon-appearance,
+	li.toplevel_page_googlesitekit-dashboard,
+	li.toplevel_page_elasticpress,
+	li.menu-icon-users,
+	li.menu-icon-tools,
+	li.menu-icon-settings,
+	li.toplevel_page_wp-mail-smtp,
+	li.toplevel_page_wpseo_dashboard,
+	li.menu-icon-plugins,
+	li.toplevel_page_siteorigin,
+	li.menu-icon-dashboard{
+		border-left:5px solid black;
+		border-right:5px solid black;
+
+		a{
+			background-color:#0071bc;
+			color:white;
+		}
+
+		.wp-submenu{
+			background-color:#4f94d4;
+			left:218px;
+
+			a{background-color:#4f94d4;}
+		}
+	}
+} // #adminmenu
