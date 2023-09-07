@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2023.09.07.0718
+Version: 2023.09.07.1343
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
@@ -73,6 +73,8 @@ class ProudCity_Admin_Menu{
 	} // init
 
 	public static function custom_menu_items(){
+
+		
 
 
 	}
@@ -278,7 +280,6 @@ class ProudCity_Admin_Menu{
 			$menu[180] = $media;
 		}
 
-		// @todo WordPress menus at nav-menu.php 190
 		// menu
 		$wp_menu = array(
 			'0' => 'Menu',
@@ -333,7 +334,10 @@ class ProudCity_Admin_Menu{
 			$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
 			$wp_dash = $menu[$wp_dash_key];
 			unset( $menu[$wp_dash_key] );
-			$menu[280] = $wp_dash;
+			// hacky way to remove stock WP Dashboard from editors
+			if ( current_user_can( 'manage_options' ) ){
+				$menu[280] = $wp_dash;
+			}
 		}
 
 		// Appearance
@@ -341,7 +345,10 @@ class ProudCity_Admin_Menu{
 			$app_key = self::get_key( 'menu-appearance', $menu );
 			$app = $menu[$app_key];
 			unset( $menu[$app_key] );
-			$menu[290] = $app;
+			// we don't want our editors to see this and this is the hacky way to remove wordpress admin menu items
+			if ( current_user_can( 'manage_options' ) ){
+				$menu[290] = $app;
+			}
 		}
 
 		// Elasticpress
@@ -471,7 +478,7 @@ class ProudCity_Admin_Menu{
 	public function admin_enqueue(){
 
 		$plugin_data = get_plugin_data( __FILE__ );
-// @todo if local use time()
+
 		$version = $plugin_data['Version'];
 
 		// styles plugin
