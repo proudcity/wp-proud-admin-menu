@@ -138,7 +138,7 @@ class ProudCity_Admin_Menu{
 		$menu[10] = $view_site;
 
 		// PC Analytics
-		if ( false === self::get_key( 'toplevel_page_pc-analytics', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_pc-analytics', $menu ) ){
 			$pca_key = self::get_key( 'toplevel_page_pc-analytics', $menu );
 			$pca = $menu[$pca_key];
 			unset( $menu[$pca_key] );
@@ -146,7 +146,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// PC Dashboard
-		if ( false === self::get_key( 'toplevel_page_proud_dashboard', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_proud_dashboard', $menu ) ){
 			$pcd_key = self::get_key( 'toplevel_page_proud_dashboard', $menu );
 			$pcd = $menu[$pcd_key];
 			unset( $menu[$pcd_key] );
@@ -154,7 +154,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Site Kit
-		if ( false === self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu ) ){
 			$gsk_key = self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu );
 			$gsk = $menu[$gsk_key];
 			unset( $menu[$gsk_key] );
@@ -162,7 +162,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Pages
-		if ( false === self::get_key( 'menu-pages', $menu ) ){
+		if ( false !== self::get_key( 'menu-pages', $menu ) ){
 			$pages_key = self::get_key( 'menu-pages', $menu );
 			$pages = $menu[$pages_key];
 			unset( $menu[$pages_key] );
@@ -170,17 +170,17 @@ class ProudCity_Admin_Menu{
 		}
 		
 		// Posts/News
-		if ( false === self::get_key( 'menu-posts', $menu ) ){
+		if ( false !== (bool) self::get_key( 'menu-posts', $menu ) ){
 			$posts_key = self::get_key( 'menu-posts', $menu );
 			$posts = $menu[$posts_key];
 			$posts[0] = 'News';
 			$posts[6] = 'dashicons-text-page';
 			unset( $menu[$posts_key] );
+			$menu[60] = $posts;
 		}
-		$menu[60] = $posts;
 
 		// Departments
-		if ( false === self::get_key( 'menu-posts-agency', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-agency', $menu ) ){
 			$dep_key = self::get_key( 'menu-posts-agency', $menu );
 			$dep = $menu[$dep_key];
 			unset( $menu[$dep_key] );
@@ -188,7 +188,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Documents
-		if ( false === self::get_key( 'menu-posts-document', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-document', $menu ) ){
 			$doc_key = self::get_key( 'menu-posts-document', $menu );
 			$doc = $menu[$doc_key];
 			unset( $menu[$doc_key] );
@@ -196,7 +196,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Forms
-		if ( false === self::get_key( 'toplevel_page_gf_edit_forms', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_gf_edit_forms', $menu ) ){
 			$gf_key = self::get_key( 'toplevel_page_gf_edit_forms', $menu );
 			$gf = $menu[$gf_key];
 			unset( $menu[$gf_key] );
@@ -204,7 +204,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Events
-		if ( false === self::get_key( 'menu-posts-event', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-event', $menu ) ){
 			$events_key = self::get_key( 'menu-posts-event', $menu );
 			$events = $menu[$events_key];
 			unset( $menu[$events_key] );
@@ -212,7 +212,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Meetings
-		if ( false === self::get_key( 'menu-posts-meeting', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-meeting', $menu ) ){
 			$meet_key = self::get_key( 'menu-posts-meeting', $menu );
 			$meet = $menu[$meet_key];
 			unset( $menu[$meet_key] );
@@ -220,7 +220,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Payments
-		if ( false === self::get_key( 'menu-posts-question', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-question', $menu ) ){
 			$ans_key = self::get_key( 'menu-posts-question', $menu );
 			$ans = $menu[$ans_key];
 			$ans[0] = 'Answers';
@@ -229,7 +229,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Staff Members/Contacts
-		if ( false === self::get_key( 'menu-posts-staff-member', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-staff-member', $menu ) ){
 			$contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
 			$contacts = $menu[$contacts_key];
 			$posts[0] = 'Contacts';
@@ -238,7 +238,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Issues
-		if ( false === self::get_key( 'menu-posts-issue', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-issue', $menu ) ){
 			$issues_key = self::get_key( 'menu-posts-issue', $menu );
 			$issues = $menu[$issues_key];
 			unset( $menu[$issues_key] );
@@ -246,7 +246,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Payments
-		if ( false === self::get_key( 'menu-posts-payment', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-payment', $menu ) ){
 			$pay_key = self::get_key( 'menu-posts-payment', $menu );
 			$pay = $menu[$pay_key];
 			$pay[6] = 'dashicons-money-alt';
@@ -255,7 +255,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Locations
-		if ( false === self::get_key( 'menu-posts-proud_location', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-proud_location', $menu ) ){
 			$loc_key = self::get_key( 'menu-posts-proud_location', $menu );
 			$loc = $menu[$loc_key];
 			unset( $menu[$loc_key] );
@@ -263,7 +263,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Jobs
-		if ( false === self::get_key( 'menu-posts-job_listing', $menu ) ){
+		if ( false !== self::get_key( 'menu-posts-job_listing', $menu ) ){
 			$jobs_key = self::get_key( 'menu-posts-job_listing', $menu );
 			$jobs = $menu[$jobs_key];
 			unset( $menu[$jobs_key] );
@@ -271,7 +271,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// media
-		if ( false === self::get_key( 'menu-media', $menu ) ){
+		if ( false !== self::get_key( 'menu-media', $menu ) ){
 			$media_key = self::get_key( 'menu-media', $menu );
 			$media = $menu[$media_key];
 			unset( $menu[$media_key] );
@@ -296,7 +296,7 @@ class ProudCity_Admin_Menu{
 		// @todo PC Tools 220
 
 		// Proud Setings
-		if ( false === self::get_key( 'toplevel_page_proudsettings', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_proudsettings', $menu ) ){
 			$pcs_key = self::get_key( 'toplevel_page_proudsettings', $menu );
 			$pcs = $menu[$pcs_key];
 			unset( $menu[$pcs_key] );
@@ -304,7 +304,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Service Center
-		if ( false === self::get_key( 'toplevel_page_service-center', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_service-center', $menu ) ){
 			$service_key = self::get_key( 'toplevel_page_service-center', $menu );
 			$service = $menu[$service_key];
 			unset( $menu[$service_key] );
@@ -312,7 +312,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Publish Press/Future
-		if ( false === self::get_key( 'toplevel_page_publishpress-future', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_publishpress-future', $menu ) ){
 			$ppf_key = self::get_key( 'toplevel_page_publishpress-future', $menu );
 			$ppf = $menu[$ppf_key];
 			unset( $menu[$ppf_key] );
@@ -321,7 +321,7 @@ class ProudCity_Admin_Menu{
 
 		/** ---- Proud Admin menu items ----- **/
 		// separator
-		if ( false === self::get_key( 'wp-menu-separator', $menu ) ){
+		if ( false !== self::get_key( 'wp-menu-separator', $menu ) ){
 			$sep1_key = self::get_key( 'wp-menu-separator', $menu );
 			$sep1 = $menu[$sep1_key];
 			unset( $menu[$sep1_key] );
@@ -329,7 +329,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// WP Dashboard
-		if ( false === self::get_key( 'menu-dashboard', $menu ) ){
+		if ( false !== self::get_key( 'menu-dashboard', $menu ) ){
 			$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
 			$wp_dash = $menu[$wp_dash_key];
 			unset( $menu[$wp_dash_key] );
@@ -337,7 +337,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Appearance
-		if ( false === self::get_key( 'menu-appearance', $menu ) ){
+		if ( false !== self::get_key( 'menu-appearance', $menu ) ){
 			$app_key = self::get_key( 'menu-appearance', $menu );
 			$app = $menu[$app_key];
 			unset( $menu[$app_key] );
@@ -345,7 +345,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Elasticpress
-		if ( false === self::get_key( 'toplevel_page_elasticpress', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_elasticpress', $menu ) ){
 			$ela_key = self::get_key( 'toplevel_page_elasticpress', $menu );
 			$ela = $menu[$ela_key];
 			unset( $menu[$ela_key] );
@@ -353,7 +353,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// WP Users
-		if ( false === self::get_key( 'menu-users', $menu ) ){
+		if ( false !== self::get_key( 'menu-users', $menu ) ){
 			$users_key = self::get_key( 'menu-users', $menu );
 			$users = $menu[$users_key];
 			unset( $menu[$users_key] );
@@ -361,7 +361,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Tools
-		if ( false === self::get_key( 'menu-tools', $menu ) ){
+		if ( false !== self::get_key( 'menu-tools', $menu ) ){
 			$tools_key = self::get_key( 'menu-tools', $menu );
 			$tools = $menu[$tools_key];
 			unset( $menu[$tools_key] );
@@ -369,7 +369,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// WP Settings
-		if ( false === self::get_key( 'menu-settings', $menu ) ){
+		if ( false !== self::get_key( 'menu-settings', $menu ) ){
 			$wpsettings_key = self::get_key( 'menu-settings', $menu );
 			$wpsettings = $menu[$wpsettings_key];
 			unset( $menu[$wpsettings_key] );
@@ -377,7 +377,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// WP Mail SMTP
-		if ( false === self::get_key( 'toplevel_page_wp-mail-smtp', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_wp-mail-smtp', $menu ) ){
 			$smtp_key = self::get_key( 'toplevel_page_wp-mail-smtp', $menu );
 			$smtp = $menu[$smtp_key];
 			unset( $menu[$smtp_key] );
@@ -385,15 +385,15 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Yoast SEO
-		if ( false === self::get_key( 'toplevel_page_wpseo_dashboard', $menu ) ){
-			$seo_key = self::get_key( 'toplevel_page_wpseo_dashboard', $menu );
+		if ( false !== self::get_key( 'toplevel_page_wpseo_workouts', $menu ) ){
+			$seo_key = self::get_key( 'toplevel_page_wpseo_workouts', $menu );
 			$seo = $menu[$seo_key];
 			unset( $menu[$seo_key] );
 			$menu[350] = $seo;
 		}
 
 		// Plugins
-		if ( false === self::get_key( 'menu-plugins', $menu ) ){
+		if ( false !== self::get_key( 'menu-plugins', $menu ) ){
 			$plug_key = self::get_key( 'menu-plugins', $menu );
 			$plug = $menu[$plug_key];
 			unset( $menu[$plug_key] );
@@ -401,7 +401,7 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Site Origin
-		if ( false === self::get_key( 'toplevel_page_siteorigin', $menu ) ){
+		if ( false !== self::get_key( 'toplevel_page_siteorigin', $menu ) ){
 			$siteorigin_key = self::get_key( 'toplevel_page_siteorigin', $menu );
 			$siteorigin = $menu[$siteorigin_key];
 			unset( $menu[$siteorigin_key] );
@@ -447,14 +447,16 @@ class ProudCity_Admin_Menu{
 			foreach( $main_value as $key => $value ){
 
 				if ( $searching_for == $value ){
-					return $parent_key;
+					return absint( $parent_key );
 				}
 
 			} // foreach $main_value
 
 		} // foreach $array as $main_key
 
-	} // get_keyi
+		return (bool) $parent_key;
+
+	} // get_key
 
 
 	/**
