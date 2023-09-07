@@ -138,111 +138,145 @@ class ProudCity_Admin_Menu{
 		$menu[10] = $view_site;
 
 		// PC Analytics
-		$pca_key = self::get_key( 'toplevel_page_pc-analytics', $menu );
-		$pca = $menu[$pca_key];
-		unset( $menu[$pca_key] );
-		$menu[20] = $pca;
+		if ( false === self::get_key( 'toplevel_page_pc-analytics', $menu ) ){
+			$pca_key = self::get_key( 'toplevel_page_pc-analytics', $menu );
+			$pca = $menu[$pca_key];
+			unset( $menu[$pca_key] );
+			$menu[20] = $pca;
+		}
 
 		// PC Dashboard
-		$pcd_key = self::get_key( 'toplevel_page_proud_dashboard', $menu );
-		$pcd = $menu[$pcd_key];
-		unset( $menu[$pcd_key] );
-		$menu[30] = $pcd;
+		if ( false === self::get_key( 'toplevel_page_proud_dashboard', $menu ) ){
+			$pcd_key = self::get_key( 'toplevel_page_proud_dashboard', $menu );
+			$pcd = $menu[$pcd_key];
+			unset( $menu[$pcd_key] );
+			$menu[30] = $pcd;
+		}
 
 		// Site Kit
-		$gsk_key = self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu );
-		$gsk = $menu[$gsk_key];
-		unset( $menu[$gsk_key] );
-		$menu[40] = $gsk;
+		if ( false === self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu ) ){
+			$gsk_key = self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu );
+			$gsk = $menu[$gsk_key];
+			unset( $menu[$gsk_key] );
+			$menu[40] = $gsk;
+		}
 
 		// Pages
-		$pages_key = self::get_key( 'menu-pages', $menu );
-		$pages = $menu[$pages_key];
-		unset( $menu[$pages_key] );
-		$menu[50] = $pages;
+		if ( false === self::get_key( 'menu-pages', $menu ) ){
+			$pages_key = self::get_key( 'menu-pages', $menu );
+			$pages = $menu[$pages_key];
+			unset( $menu[$pages_key] );
+			$menu[50] = $pages;
+		}
 		
 		// Posts/News
-		$posts_key = self::get_key( 'menu-posts', $menu );
-		$posts = $menu[$posts_key];
-		$posts[0] = 'News';
-		$posts[6] = 'dashicons-text-page';
-		unset( $menu[$posts_key] );
+		if ( false === self::get_key( 'menu-posts', $menu ) ){
+			$posts_key = self::get_key( 'menu-posts', $menu );
+			$posts = $menu[$posts_key];
+			$posts[0] = 'News';
+			$posts[6] = 'dashicons-text-page';
+			unset( $menu[$posts_key] );
+		}
 		$menu[60] = $posts;
 
 		// Departments
-		$dep_key = self::get_key( 'menu-posts-agency', $menu );
-		$dep = $menu[$dep_key];
-		unset( $menu[$dep_key] );
-		$menu[70] = $dep;
+		if ( false === self::get_key( 'menu-posts-agency', $menu ) ){
+			$dep_key = self::get_key( 'menu-posts-agency', $menu );
+			$dep = $menu[$dep_key];
+			unset( $menu[$dep_key] );
+			$menu[70] = $dep;
+		}
 
 		// Documents
-		$doc_key = self::get_key( 'menu-posts-document', $menu );
-		$doc = $menu[$doc_key];
-		unset( $menu[$doc_key] );
-		$menu[80] = $doc;
+		if ( false === self::get_key( 'menu-posts-document', $menu ) ){
+			$doc_key = self::get_key( 'menu-posts-document', $menu );
+			$doc = $menu[$doc_key];
+			unset( $menu[$doc_key] );
+			$menu[80] = $doc;
+		}
 
 		// Forms
-		$gf_key = self::get_key( 'toplevel_page_gf_edit_forms', $menu );
-		$gf = $menu[$gf_key];
-		unset( $menu[$gf_key] );
-		$menu[90] = $gf;
+		if ( false === self::get_key( 'toplevel_page_gf_edit_forms', $menu ) ){
+			$gf_key = self::get_key( 'toplevel_page_gf_edit_forms', $menu );
+			$gf = $menu[$gf_key];
+			unset( $menu[$gf_key] );
+			$menu[90] = $gf;
+		}
 
 		// Events
-		$events_key = self::get_key( 'menu-posts-event', $menu );
-		$events = $menu[$events_key];
-		unset( $menu[$events_key] );
-		$menu[100] = $events;
+		if ( false === self::get_key( 'menu-posts-event', $menu ) ){
+			$events_key = self::get_key( 'menu-posts-event', $menu );
+			$events = $menu[$events_key];
+			unset( $menu[$events_key] );
+			$menu[100] = $events;
+		}
 
 		// Meetings
-		$meet_key = self::get_key( 'menu-posts-meeting', $menu );
-		$meet = $menu[$meet_key];
-		unset( $menu[$meet_key] );
-		$menu[110] = $meet;
+		if ( false === self::get_key( 'menu-posts-meeting', $menu ) ){
+			$meet_key = self::get_key( 'menu-posts-meeting', $menu );
+			$meet = $menu[$meet_key];
+			unset( $menu[$meet_key] );
+			$menu[110] = $meet;
+		}
 
 		// Payments
-		$ans_key = self::get_key( 'menu-posts-question', $menu );
-		$ans = $menu[$ans_key];
-		$ans[0] = 'Answers';
-		unset( $menu[$ans_key] );
-		$menu[120] = $ans;
+		if ( false === self::get_key( 'menu-posts-question', $menu ) ){
+			$ans_key = self::get_key( 'menu-posts-question', $menu );
+			$ans = $menu[$ans_key];
+			$ans[0] = 'Answers';
+			unset( $menu[$ans_key] );
+			$menu[120] = $ans;
+		}
 
 		// Staff Members/Contacts
-		$contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
-		$contacts = $menu[$contacts_key];
-		$posts[0] = 'Contacts';
-		unset( $menu[$contacts_key] );
-		$menu[130] = $contacts;
+		if ( false === self::get_key( 'menu-posts-staff-member', $menu ) ){
+			$contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
+			$contacts = $menu[$contacts_key];
+			$posts[0] = 'Contacts';
+			unset( $menu[$contacts_key] );
+			$menu[130] = $contacts;
+		}
 
 		// Issues
-		$issues_key = self::get_key( 'menu-posts-issue', $menu );
-		$issues = $menu[$issues_key];
-		unset( $menu[$issues_key] );
-		$menu[140] = $issues;
+		if ( false === self::get_key( 'menu-posts-issue', $menu ) ){
+			$issues_key = self::get_key( 'menu-posts-issue', $menu );
+			$issues = $menu[$issues_key];
+			unset( $menu[$issues_key] );
+			$menu[140] = $issues;
+		}
 
 		// Payments
-		$pay_key = self::get_key( 'menu-posts-payment', $menu );
-		$pay = $menu[$pay_key];
-		$pay[6] = 'dashicons-money-alt';
-		unset( $menu[$pay_key] );
-		$menu[150] = $pay;
+		if ( false === self::get_key( 'menu-posts-payment', $menu ) ){
+			$pay_key = self::get_key( 'menu-posts-payment', $menu );
+			$pay = $menu[$pay_key];
+			$pay[6] = 'dashicons-money-alt';
+			unset( $menu[$pay_key] );
+			$menu[150] = $pay;
+		}
 
 		// Locations
-		$loc_key = self::get_key( 'menu-posts-proud_location', $menu );
-		$loc = $menu[$loc_key];
-		unset( $menu[$loc_key] );
-		$menu[160] = $loc;
+		if ( false === self::get_key( 'menu-posts-proud_location', $menu ) ){
+			$loc_key = self::get_key( 'menu-posts-proud_location', $menu );
+			$loc = $menu[$loc_key];
+			unset( $menu[$loc_key] );
+			$menu[160] = $loc;
+		}
 
 		// Jobs
-		$jobs_key = self::get_key( 'menu-posts-job_listing', $menu );
-		$jobs = $menu[$jobs_key];
-		unset( $menu[$jobs_key] );
-		$menu[170] = $jobs;
+		if ( false === self::get_key( 'menu-posts-job_listing', $menu ) ){
+			$jobs_key = self::get_key( 'menu-posts-job_listing', $menu );
+			$jobs = $menu[$jobs_key];
+			unset( $menu[$jobs_key] );
+			$menu[170] = $jobs;
+		}
 
 		// media
-		$media_key = self::get_key( 'menu-media', $menu );
-		$media = $menu[$media_key];
-		unset( $menu[$media_key] );
-		$menu[180] = $media;
+		if ( false === self::get_key( 'menu-media', $menu ) ){
+			$media_key = self::get_key( 'menu-media', $menu );
+			$media = $menu[$media_key];
+			unset( $menu[$media_key] );
+			$menu[180] = $media;
+		}
 
 		// @todo WordPress menus at nav-menu.php 190
 		// menu
@@ -262,89 +296,117 @@ class ProudCity_Admin_Menu{
 		// @todo PC Tools 220
 
 		// Proud Setings
-		$pcs_key = self::get_key( 'toplevel_page_proudsettings', $menu );
-		$pcs = $menu[$pcs_key];
-		unset( $menu[$pcs_key] );
-		$menu[230] = $pcs;
+		if ( false === self::get_key( 'toplevel_page_proudsettings', $menu ) ){
+			$pcs_key = self::get_key( 'toplevel_page_proudsettings', $menu );
+			$pcs = $menu[$pcs_key];
+			unset( $menu[$pcs_key] );
+			$menu[230] = $pcs;
+		}
 
 		// Service Center
-		$service_key = self::get_key( 'toplevel_page_service-center', $menu );
-		$service = $menu[$service_key];
-		unset( $menu[$service_key] );
-		$menu[240] = $service;
+		if ( false === self::get_key( 'toplevel_page_service-center', $menu ) ){
+			$service_key = self::get_key( 'toplevel_page_service-center', $menu );
+			$service = $menu[$service_key];
+			unset( $menu[$service_key] );
+			$menu[240] = $service;
+		}
 
 		// Publish Press/Future
-		$ppf_key = self::get_key( 'toplevel_page_publishpress-future', $menu );
-		$ppf = $menu[$ppf_key];
-		unset( $menu[$ppf_key] );
-		$menu[260] = $ppf;
+		if ( false === self::get_key( 'toplevel_page_publishpress-future', $menu ) ){
+			$ppf_key = self::get_key( 'toplevel_page_publishpress-future', $menu );
+			$ppf = $menu[$ppf_key];
+			unset( $menu[$ppf_key] );
+			$menu[260] = $ppf;
+		}
 
 		/** ---- Proud Admin menu items ----- **/
 		// separator
-		$sep1_key = self::get_key( 'wp-menu-separator', $menu );
-		$sep1 = $menu[$sep1_key];
-		unset( $menu[$sep1_key] );
-		$menu[270] = $sep1;
+		if ( false === self::get_key( 'wp-menu-separator', $menu ) ){
+			$sep1_key = self::get_key( 'wp-menu-separator', $menu );
+			$sep1 = $menu[$sep1_key];
+			unset( $menu[$sep1_key] );
+			$menu[270] = $sep1;
+		}
 
 		// WP Dashboard
-		$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
-		$wp_dash = $menu[$wp_dash_key];
-		unset( $menu[$wp_dash_key] );
-		$menu[280] = $wp_dash;
+		if ( false === self::get_key( 'menu-dashboard', $menu ) ){
+			$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
+			$wp_dash = $menu[$wp_dash_key];
+			unset( $menu[$wp_dash_key] );
+			$menu[280] = $wp_dash;
+		}
 
 		// Appearance
-		$app_key = self::get_key( 'menu-appearance', $menu );
-		$app = $menu[$app_key];
-		unset( $menu[$app_key] );
-		$menu[290] = $app;
+		if ( false === self::get_key( 'menu-appearance', $menu ) ){
+			$app_key = self::get_key( 'menu-appearance', $menu );
+			$app = $menu[$app_key];
+			unset( $menu[$app_key] );
+			$menu[290] = $app;
+		}
 
 		// Elasticpress
-		$ela_key = self::get_key( 'toplevel_page_elasticpress', $menu );
-		$ela = $menu[$ela_key];
-		unset( $menu[$ela_key] );
-		$menu[300] = $ela;
+		if ( false === self::get_key( 'toplevel_page_elasticpress', $menu ) ){
+			$ela_key = self::get_key( 'toplevel_page_elasticpress', $menu );
+			$ela = $menu[$ela_key];
+			unset( $menu[$ela_key] );
+			$menu[300] = $ela;
+		}
 
 		// WP Users
-		$users_key = self::get_key( 'menu-users', $menu );
-		$users = $menu[$users_key];
-		unset( $menu[$users_key] );
-		$menu[310] = $users;
+		if ( false === self::get_key( 'menu-users', $menu ) ){
+			$users_key = self::get_key( 'menu-users', $menu );
+			$users = $menu[$users_key];
+			unset( $menu[$users_key] );
+			$menu[310] = $users;
+		}
 
 		// Tools
-		$tools_key = self::get_key( 'menu-tools', $menu );
-		$tools = $menu[$tools_key];
-		unset( $menu[$tools_key] );
-		$menu[320] = $tools;
+		if ( false === self::get_key( 'menu-tools', $menu ) ){
+			$tools_key = self::get_key( 'menu-tools', $menu );
+			$tools = $menu[$tools_key];
+			unset( $menu[$tools_key] );
+			$menu[320] = $tools;
+		}
 
 		// WP Settings
-		$wpsettings_key = self::get_key( 'menu-settings', $menu );
-		$wpsettings = $menu[$wpsettings_key];
-		unset( $menu[$wpsettings_key] );
-		$menu[330] = $wpsettings;
+		if ( false === self::get_key( 'menu-settings', $menu ) ){
+			$wpsettings_key = self::get_key( 'menu-settings', $menu );
+			$wpsettings = $menu[$wpsettings_key];
+			unset( $menu[$wpsettings_key] );
+			$menu[330] = $wpsettings;
+		}
 
 		// WP Mail SMTP
-		$smtp_key = self::get_key( 'toplevel_page_wp-mail-smtp', $menu );
-		$smtp = $menu[$smtp_key];
-		unset( $menu[$smtp_key] );
-		$menu[340] = $smtp;
+		if ( false === self::get_key( 'toplevel_page_wp-mail-smtp', $menu ) ){
+			$smtp_key = self::get_key( 'toplevel_page_wp-mail-smtp', $menu );
+			$smtp = $menu[$smtp_key];
+			unset( $menu[$smtp_key] );
+			$menu[340] = $smtp;
+		}
 
 		// Yoast SEO
-		$seo_key = self::get_key( 'toplevel_page_wpseo_dashboard', $menu );
-		$seo = $menu[$seo_key];
-		unset( $menu[$seo_key] );
-		$menu[350] = $seo;
+		if ( false === self::get_key( 'toplevel_page_wpseo_dashboard', $menu ) ){
+			$seo_key = self::get_key( 'toplevel_page_wpseo_dashboard', $menu );
+			$seo = $menu[$seo_key];
+			unset( $menu[$seo_key] );
+			$menu[350] = $seo;
+		}
 
 		// Plugins
-		$plug_key = self::get_key( 'menu-plugins', $menu );
-		$plug = $menu[$plug_key];
-		unset( $menu[$plug_key] );
-		$menu[360] = $plug;
+		if ( false === self::get_key( 'menu-plugins', $menu ) ){
+			$plug_key = self::get_key( 'menu-plugins', $menu );
+			$plug = $menu[$plug_key];
+			unset( $menu[$plug_key] );
+			$menu[360] = $plug;
+		}
 
 		// Site Origin
-		$siteorigin_key = self::get_key( 'toplevel_page_siteorigin', $menu );
-		$siteorigin = $menu[$siteorigin_key];
-		unset( $menu[$siteorigin_key] );
-		$menu[370] = $siteorigin;
+		if ( false === self::get_key( 'toplevel_page_siteorigin', $menu ) ){
+			$siteorigin_key = self::get_key( 'toplevel_page_siteorigin', $menu );
+			$siteorigin = $menu[$siteorigin_key];
+			unset( $menu[$siteorigin_key] );
+			$menu[370] = $siteorigin;
+		}
 
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
@@ -375,6 +437,9 @@ class ProudCity_Admin_Menu{
 	 * @return 	int 			$parent_key 									The parent key
 	 */
 	private static function get_key( $searching_for, $array ){
+
+		// if we never find the key we can skip the menu stuff
+		$parent_key = false;
 
 		foreach( $array as $main_key => $main_value ){
 			$parent_key = $main_key;
