@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2023.09.07.1343
+Version: 2023.09.12.1114
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
@@ -292,6 +292,14 @@ class ProudCity_Admin_Menu{
 		);
 		$menu[190] = $wp_menu;
 
+		// PopUp Maker
+		if ( false !== self::get_key( 'menu-posts-popup', $menu ) ){
+			$pop_key = self::get_key( 'menu-posts-popup', $menu );
+			$pop = $menu[$pop_key];
+			unset( $menu[$pop_key] );
+			$menu[230] = $pop;
+		}
+
 		// @todo PC Accounts 200
 
 		// @todo PC Tools 220
@@ -392,8 +400,8 @@ class ProudCity_Admin_Menu{
 		}
 
 		// Yoast SEO
-		if ( false !== self::get_key( 'toplevel_page_wpseo_workouts', $menu ) ){
-			$seo_key = self::get_key( 'toplevel_page_wpseo_workouts', $menu );
+		if ( false !== self::get_key( 'wpseo_dashboard', $menu ) ){
+			$seo_key = self::get_key( 'wpseo_dashboard', $menu );
 			$seo = $menu[$seo_key];
 			unset( $menu[$seo_key] );
 			$menu[350] = $seo;
@@ -446,7 +454,7 @@ class ProudCity_Admin_Menu{
 	private static function get_key( $searching_for, $array ){
 
 		// if we never find the key we can skip the menu stuff
-		$parent_key = false;
+		$notfound = false;
 
 		foreach( $array as $main_key => $main_value ){
 			$parent_key = $main_key;
@@ -461,7 +469,7 @@ class ProudCity_Admin_Menu{
 
 		} // foreach $array as $main_key
 
-		return (bool) $parent_key;
+		return (bool) $notfound;
 
 	} // get_key
 
