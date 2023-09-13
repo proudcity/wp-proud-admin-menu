@@ -74,8 +74,45 @@ class ProudCity_Admin_Menu{
 
 	public static function custom_menu_items(){
 
-		
+		$active_plugins = get_option( 'active_plugins' );
 
+		if ( 	in_array( 'broken-link-checker/broken-link-checker.php', (array) $active_plugins ) 				// broken link checker
+				|| in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins ) 								// wp rocket
+				|| in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins ) 		// redirect manager
+			){
+
+			add_menu_page(
+				'Tools', 			// page title
+				'Tools', 			// menu_title
+				'edit_posts', 		// cap
+				'pc_tools', 		// menu_slug
+				'',					// callback
+				'dashicons-admin-tools', 		// icon
+				'220', 				// location
+			);
+
+		} // in_array
+
+
+		if ( in_array( 'broken-link-checker/broken-link-checker.php', (array) $active_plugins ) ){
+			add_submenu_page(
+				'pc_tools', 		// parent_slug
+				'Broken Links', 	// page title
+				'Broken Links', 	// menu title
+				'edit_posts', 		// cap
+				'admin.php?page=view-broken-links', // menu_slug
+			);
+		} // in_array BLC
+
+		if ( in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins ) ){
+			add_submenu_page(
+				'pc_tools', 		// parent_slug
+				'Redirects', 		// page title
+				'Redirects', 		// menu title
+				'edit_posts', 		// cap
+				'edit.php?post_type=redirect_rule', // menu_slug
+			);
+		} // in_array redirects
 
 	}
 
@@ -305,7 +342,7 @@ class ProudCity_Admin_Menu{
 
 		// customizer
 		// @todo ideally we'd add this return param to the customizer URL but it's causing some errors
-		$customizer_return_url = '?return=%2Fwp-admin%2F'.urlencode( sprintf(basename($_SERVER['REQUEST_URI'])) );
+		//$customizer_return_url = '?return=%2Fwp-admin%2F'.urlencode( sprintf(basename($_SERVER['REQUEST_URI'])) );
 		$customizer_url = admin_url() . 'customize.php';
 		$customize = array(
 			'0' => 'Customizer',
@@ -318,7 +355,13 @@ class ProudCity_Admin_Menu{
 		);
 		$menu[210] = $customize;
 
-		// @todo PC Tools 220
+		// PC Tools 220
+		if ( false !== self::get_key( 'toplevel_page_pc_tools', $menu ) ){
+			$pct_key = self::get_key( 'toplevel_page_pc_tools', $menu );
+			$pct = $menu[$pct_key];
+			unset( $menu[$pct_key] );
+			$menu[220] = $pct;
+		}
 
 		// Proud Setings
 		if ( false !== self::get_key( 'toplevel_page_proudsettings', $menu ) ){
