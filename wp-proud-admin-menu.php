@@ -282,7 +282,7 @@ class ProudCity_Admin_Menu{
 
 		// menu
 		$wp_menu = array(
-			'0' => 'Menu',
+			'0' => 'Menus',
 			'1' => 'read',
 			'2' => admin_url() . 'nav-menus.php',
 			'3' => '',
