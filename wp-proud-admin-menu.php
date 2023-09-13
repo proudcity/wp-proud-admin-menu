@@ -303,6 +303,21 @@ class ProudCity_Admin_Menu{
 
 		// @todo PC Accounts 200
 
+		// customizer
+		// @todo ideally we'd add this return param to the customizer URL but it's causing some errors
+		$customizer_return_url = '?return=%2Fwp-admin%2F'.urlencode( sprintf(basename($_SERVER['REQUEST_URI'])) );
+		$customizer_url = admin_url() . 'customize.php';
+		$customize = array(
+			'0' => 'Customizer',
+			'1' => 'read',
+			'2' => esc_url( $customizer_url ),
+			'3' => '',
+			'4' => 'menu-top menu-wp-customizer',
+			'5' => 'menu-wp-customizer',
+			'6' => 'dashicons-admin-customizer',
+		);
+		$menu[210] = $customize;
+
 		// @todo PC Tools 220
 
 		// Proud Setings
@@ -439,6 +454,7 @@ class ProudCity_Admin_Menu{
 // 		- can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
 // @todo do_action so that plugins can hook this and add themselves in the proper spot
 // @todo conditional check for stuff like MailOptin becausee it is not present on every site
+
 /*
 		echo '<pre>';
 		print_r( $menu );
