@@ -234,7 +234,7 @@ class ProudCity_Admin_Menu{
 		if ( false !== self::get_key( 'menu-posts-staff-member', $menu ) ){
 			$contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
 			$contacts = $menu[$contacts_key];
-			$posts[0] = 'Contacts';
+			$contacts[0] = 'Contacts';
 			unset( $menu[$contacts_key] );
 			$menu[130] = $contacts;
 		}
@@ -268,6 +268,7 @@ class ProudCity_Admin_Menu{
 		if ( false !== self::get_key( 'menu-posts-job_listing', $menu ) ){
 			$jobs_key = self::get_key( 'menu-posts-job_listing', $menu );
 			$jobs = $menu[$jobs_key];
+			$jobs[0] = 'Jobs';
 			unset( $menu[$jobs_key] );
 			$menu[170] = $jobs;
 		}
@@ -318,6 +319,14 @@ class ProudCity_Admin_Menu{
 			$service = $menu[$service_key];
 			unset( $menu[$service_key] );
 			$menu[240] = $service;
+		}
+
+		// MailOptin
+		if ( false !== self::get_key( 'toplevel_page_mailoptin-settings', $menu ) ){
+			$mailopt_key = self::get_key( 'toplevel_page_mailoptin-settings', $menu );
+			$mailopt = $menu[$mailopt_key];
+			unset( $menu[$mailopt_key] );
+			$menu[250] = $mailopt;
 		}
 
 		// Publish Press/Future
