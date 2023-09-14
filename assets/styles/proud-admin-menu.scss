@@ -8,7 +8,7 @@ $color-sidebar-active-color: #000;
 $color-sidebar-caret-color: #f1f1f1;
 $color-sidebar-submenu-link-color: $color-sidebar-link;
 $color-sidebar-heading: #929292;
-$color-sidebar-hover: #dcdcde;
+$color-sidebar-hover: #dfe1e2;
 
 $font-size-sidebar-link: 14px;
 $padding-sidebar-link: 10px 0 10px 10px;
@@ -105,12 +105,12 @@ $sidebar-width: 228px;
 		li{
 			&.current{
 				a{
-					background-color:#c3bdbd;
+					background-color:$color-sidebar-hover;
 					color:black;
 
 					&:hover,
 					&:focus{
-						background-color:#c7c7c7;
+						background-color:$color-sidebar-hover;
 						color:black;
 						border-left-color:black;
 					}
@@ -122,7 +122,7 @@ $sidebar-width: 228px;
 
 				&:hover,
 				&:focus{
-					background-color:#c7c7c7;
+					background-color:$color-sidebar-hover;
 					color:black;
 					border-left-color:black;
 				}
@@ -140,7 +140,7 @@ $sidebar-width: 228px;
 			div.wp-menu-image:before{color:black;}
 
 			a.wp-has-current-submenu{
-				background-color:#c3bdbd;
+				background-color:$color-sidebar-hover;
 				color:black;
 
 				&:hover{
@@ -182,16 +182,21 @@ $sidebar-width: 228px;
 		border-right:5px solid black;
 
 		a{
-			background-color:#0071bc;
-			color:white;
+			background-color:#d0ecff;
+			color:black;
+
+			&:hover,
+			&:focus{
+				background-color:#bce4ff;
+			}
 		} // a
 
 		.wp-submenu{
-			background-color:#4f94d4;
+			//background-color:#4f94d4;
 			left:218px;
 
 			a{
-				background-color:#4f94d4;
+				background-color:#ebebeb;
 				&:hover,
 				&:focus{
 					background-color:#c7c7c7;
@@ -231,6 +236,13 @@ $font-size: 1.2em;
 
 	.menu-icon-page .dashicons-before:before{
 		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-view-site .dashicons-before:before{
+		content: '\f015';
 		display:inline-block;
 		font-family: 'FontAwesome';
 		font-size: $font-size;
