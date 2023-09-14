@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2023.09.14.1050
+Version: 2023.09.14.1338
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
@@ -86,12 +86,22 @@ class ProudCity_Admin_Menu{
 				'Tools', 			// menu_title
 				'edit_posts', 		// cap
 				'pc_tools', 		// menu_slug
-				'',					// callback
+				[ 'ProudCity_Admin_Menu', 'pc_tools' ],					// callback
 				'dashicons-admin-tools', 		// icon
 				'220', 				// location
 			);
 
 		} // in_array
+
+		if ( in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins ) ){
+			add_submenu_page(
+				'pc_tools', 		// parent_slug
+				'Tools', 		// page title
+				'Redirects', 		// menu title
+				'edit_posts', 		// cap
+				'edit.php?post_type=redirect_rule', // menu_slug
+			);
+		} // in_array redirects
 
 		if ( in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins ) ){
 			add_submenu_page(
@@ -114,16 +124,11 @@ class ProudCity_Admin_Menu{
 			);
 		} // in_array BLC
 
-		if ( in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins ) ){
-			add_submenu_page(
-				'pc_tools', 		// parent_slug
-				'Redirects', 		// page title
-				'Redirects', 		// menu title
-				'edit_posts', 		// cap
-				'edit.php?post_type=redirect_rule', // menu_slug
-			);
-		} // in_array redirects
+	}
 
+	public static function pc_tools(){
+		// boo this is a hacky way to get something done to redirect
+		wp_redirect( admin_url( 'edit.php?post_type=redirect_rule' ) );
 	}
 
 	/**
