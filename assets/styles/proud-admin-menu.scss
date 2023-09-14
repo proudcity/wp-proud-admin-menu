@@ -158,14 +158,6 @@ $sidebar-width: 228px;
 /** Admin Menu Items **/
 #adminmenu{
 
-	li.menu-icon-dashboard{
-		border-top:5px solid black;
-	}
-
-	li.toplevel_page_siteorigin{
-		border-bottom:5px solid black;
-	}
-
 	li.menu-icon-appearance,
 	li.toplevel_page_googlesitekit-dashboard,
 	li.toplevel_page_elasticpress,
@@ -178,8 +170,6 @@ $sidebar-width: 228px;
 	li.toplevel_page_wpa0,
 	li.toplevel_page_siteorigin,
 	li.menu-icon-dashboard{
-		border-left:5px solid black;
-		border-right:5px solid black;
 
 		a{
 			background-color:#d0ecff;

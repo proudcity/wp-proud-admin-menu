@@ -128,7 +128,7 @@ class ProudCity_Admin_Menu{
 
 	public static function pc_tools(){
 		// boo this is a hacky way to get something done to redirect
-		wp_redirect( admin_url( 'edit.php?post_type=redirect_rule' ) );
+		wp_redirect( admin_url( 'admin.php?page=view-broken-links' ) );
 	}
 
 	/**
