@@ -214,3 +214,115 @@ $sidebar-width: 228px;
 		}
 	}
 } // #adminmenu
+
+/** Font Awesome Icons **/
+/** If we go back to Dashicons just delete these lines and you'll get dashicons 	**/
+/** instead of the custom icons listed below. 										**/
+$font-size: 1.2em;
+#adminmenu{
+
+	.menu-icon-agency .dashicons-before:before{
+		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-page .dashicons-before:before{
+		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-post .dashicons-before:before{
+		content: '\f1ea';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-meeting .dashicons-before:before{
+		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-event .dashicons-before:before{
+		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-payment .dashicons-before:before{
+		content: '\f09d';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-staff-member .dashicons-before:before{
+		content: '\f007';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-media .dashicons-before:before{
+		content: '\f03e';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-issue .dashicons-before:before{
+		content: '\f071';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-document .dashicons-before:before{
+		content: '\f15c';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+
+	.menu-icon-proud_location .dashicons-before:before{
+		content: '\f041';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.toplevel_page_proud_dashboard .dashicons-before img{
+		display:none;
+	}
+
+	.toplevel_page_proud_dashboard .dashicons-before:before,
+	.menu-icon-dashboard .dashicons-before:before{
+		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.toplevel_page_proudsettings .dashicons-before:before{
+		content: '\f085';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.toplevel_page_service-center .dashicons-before:before{
+		content: '';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+} // #adminmenu
