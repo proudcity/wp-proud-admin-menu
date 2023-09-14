@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2023.09.14.0925
+Version: 2023.09.14.1050
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
@@ -468,12 +468,21 @@ class ProudCity_Admin_Menu{
 			$menu[330] = $wpsettings;
 		}
 
+
+		// Auth0
+		if ( false !== self::get_key( 'toplevel_page_wpa0', $menu ) ){
+			$auth0_key = self::get_key( 'toplevel_page_wpa0', $menu );
+			$auth0 = $menu[$auth0_key];
+			unset( $menu[$auth0_key] );
+			$menu[340] = $auth0;
+		}
+
 		// WP Mail SMTP
 		if ( false !== self::get_key( 'toplevel_page_wp-mail-smtp', $menu ) ){
 			$smtp_key = self::get_key( 'toplevel_page_wp-mail-smtp', $menu );
 			$smtp = $menu[$smtp_key];
 			unset( $menu[$smtp_key] );
-			$menu[340] = $smtp;
+			$menu[350] = $smtp;
 		}
 
 		// Yoast SEO
@@ -481,7 +490,7 @@ class ProudCity_Admin_Menu{
 			$seo_key = self::get_key( 'wpseo_dashboard', $menu );
 			$seo = $menu[$seo_key];
 			unset( $menu[$seo_key] );
-			$menu[350] = $seo;
+			$menu[360] = $seo;
 		}
 
 		// Plugins
@@ -489,7 +498,7 @@ class ProudCity_Admin_Menu{
 			$plug_key = self::get_key( 'menu-plugins', $menu );
 			$plug = $menu[$plug_key];
 			unset( $menu[$plug_key] );
-			$menu[360] = $plug;
+			$menu[370] = $plug;
 		}
 
 		// Site Origin
@@ -497,7 +506,7 @@ class ProudCity_Admin_Menu{
 			$siteorigin_key = self::get_key( 'toplevel_page_siteorigin', $menu );
 			$siteorigin = $menu[$siteorigin_key];
 			unset( $menu[$siteorigin_key] );
-			$menu[370] = $siteorigin;
+			$menu[380] = $siteorigin;
 		}
 
 // @todo get each item I know about in a variable
