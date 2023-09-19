@@ -72,6 +72,13 @@ class ProudCity_Admin_Menu{
 
 	} // init
 
+	/**
+	 * Adds our custom admin menu items
+	 *
+	 * @since 2023.19.0708
+	 * @author Curtis
+	 * @access public
+	 */
 	public static function custom_menu_items(){
 
 		$active_plugins = get_option( 'active_plugins' );
@@ -514,6 +521,9 @@ class ProudCity_Admin_Menu{
 			$menu[380] = $siteorigin;
 		}
 
+		// hacking the Staff Members menu
+		$submenu['edit.php?post_type=staff-member'][5][0] = 'All Contacts';
+
 // @todo get each item I know about in a variable
 // @todo put regular items in the order we want
 // @todo add admin items with custom background
@@ -524,7 +534,7 @@ class ProudCity_Admin_Menu{
 
 /*
 		echo '<pre>';
-		print_r( $menu );
+		print_r( $submenu['edit.php?post_type=staff-member'] );
 		echo '</pre>';
 */
 	}
