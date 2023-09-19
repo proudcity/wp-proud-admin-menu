@@ -105,7 +105,7 @@ $sidebar-width: 228px;
 			&.current{
 				a{
 					background-color:$color-sidebar-hover;
-					color:black;
+					color:black !important;
 
 					&:hover,
 					&:focus{
