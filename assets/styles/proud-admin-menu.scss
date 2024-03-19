@@ -14,6 +14,8 @@ $font-size-sidebar-link: 14px;
 $padding-sidebar-link: 10px 0 10px 10px;
 $sidebar-width: 228px;
 
+// turns off red badges beside admin menu items
+body:not(.role-admin) #adminmenu .update-plugins{display:none;}
 
 #adminmenu,
 #adminmenuwrap,
