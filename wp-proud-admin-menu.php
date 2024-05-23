@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2024.03.19.1158
+Version: 2024.05.23.1314
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
@@ -112,11 +112,12 @@ class ProudCity_Admin_Menu{
 
 		if ( in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins ) ){
 			add_submenu_page(
-				'pc_tools', 		// parent_slug
-				'Caching', 		// page title
-				'Caching', 		// menu title
-				'edit_posts', 		// cap
-				'admin.php?page=caching', // menu_slug
+				'pc_tools', 				// parent_slug
+				'Caching', 					// page title
+				'Caching', 					// menu title
+				'edit_posts', 				// cap
+				'admin.php?page=pc_caching', 	// menu_slug
+				[ 'Proud_Cache_Settings', 'render_page' ], // callback to show the content
 			);
 		} // in_array wp-rocket
 
@@ -206,12 +207,12 @@ class ProudCity_Admin_Menu{
 			$menu[20] = $pca;
 		}
 
-		// PC Dashboard
-		if ( false !== self::get_key( 'toplevel_page_proud_dashboard', $menu ) ){
-			$pcd_key = self::get_key( 'toplevel_page_proud_dashboard', $menu );
-			$pcd = $menu[$pcd_key];
-			unset( $menu[$pcd_key] );
-			$menu[30] = $pcd;
+		// WP Dashboard
+		if ( false !== self::get_key( 'menu-dashboard', $menu ) ){
+			$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
+			$wp_dash = $menu[$wp_dash_key];
+			unset( $menu[$wp_dash_key] );
+			$menu[30] = $wp_dash;
 		}
 
 		// Site Kit
@@ -424,17 +425,6 @@ class ProudCity_Admin_Menu{
 			$sep1 = $menu[$sep1_key];
 			unset( $menu[$sep1_key] );
 			$menu[270] = $sep1;
-		}
-
-		// WP Dashboard
-		if ( false !== self::get_key( 'menu-dashboard', $menu ) ){
-			$wp_dash_key = self::get_key( 'menu-dashboard', $menu );
-			$wp_dash = $menu[$wp_dash_key];
-			unset( $menu[$wp_dash_key] );
-			// hacky way to remove stock WP Dashboard from editors
-			if ( current_user_can( 'manage_options' ) ){
-				$menu[280] = $wp_dash;
-			}
 		}
 
 		// Appearance
