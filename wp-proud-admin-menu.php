@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2024.05.23.1314
+Version: 2024.05.29.1047
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
