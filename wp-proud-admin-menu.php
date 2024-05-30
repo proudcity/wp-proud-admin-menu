@@ -116,8 +116,8 @@ class ProudCity_Admin_Menu{
 				'Caching', 					// page title
 				'Caching', 					// menu title
 				'edit_posts', 				// cap
-				'admin.php?page=pc_caching', 	// menu_slug
-				[ 'Proud_Cache_Settings', 'render_page' ], // callback to show the content
+				'pc_caching', 	// menu_slug
+				[ 'Proud_Caching', 'render_page' ], // callback to show the content
 			);
 		} // in_array wp-rocket
 
@@ -149,7 +149,7 @@ class ProudCity_Admin_Menu{
 	public static function admin_menu_order(){
 
 		global $menu, $submenu;
-		
+
 		/**
 		 *  Reindex the array so that anything I don't touch gets pushed
 		 *  to the bottom of the menu
@@ -230,7 +230,7 @@ class ProudCity_Admin_Menu{
 			unset( $menu[$pages_key] );
 			$menu[50] = $pages;
 		}
-		
+
 		// Posts/News
 		if ( false !== (bool) self::get_key( 'menu-posts', $menu ) ){
 			$posts_key = self::get_key( 'menu-posts', $menu );
