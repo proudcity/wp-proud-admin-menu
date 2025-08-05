@@ -3,7 +3,7 @@
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2024.11.25.1142
+Version: 2025.08.05.1316
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
@@ -83,7 +83,7 @@ class ProudCity_Admin_Menu{
 
         $active_plugins = get_option( 'active_plugins' );
 
-        if (    in_array( 'broken-link-checker/broken-link-checker.php', (array) $active_plugins )              // broken link checker
+        if (    in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins )              // broken link checker
                 || in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins )                               // wp rocket
                 || in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins )       // redirect manager
             ){
@@ -121,7 +121,7 @@ class ProudCity_Admin_Menu{
             );
         } // in_array wp-rocket
 
-        if ( in_array( 'broken-link-checker/broken-link-checker.php', (array) $active_plugins ) ){
+        if ( in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins ) ){
             add_submenu_page(
                 'pc_tools',         // parent_slug
                 'Broken Links',     // page title
