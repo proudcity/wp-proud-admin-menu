@@ -86,7 +86,6 @@ class ProudCity_Admin_Menu{
         $active_plugins = get_option( 'active_plugins' );
 
         if (    in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins )              // broken link checker
-                || in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins )                               // wp rocket
                 || in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins )       // redirect manager
             ){
 
@@ -111,17 +110,6 @@ class ProudCity_Admin_Menu{
                 'edit.php?post_type=redirect_rule', // menu_slug
             );
         } // in_array redirects
-
-        if ( in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins ) ){
-            add_submenu_page(
-                'pc_tools',                 // parent_slug
-                'Caching',                  // page title
-                'Caching',                  // menu title
-                'edit_posts',               // cap
-                'pc_caching',   // menu_slug
-                [ 'Proud_Caching', 'render_page' ], // callback to show the content
-            );
-        } // in_array wp-rocket
 
         if ( in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins ) ){
             add_submenu_page(
