@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
@@ -7,7 +7,7 @@ Version: 2025.08.05.1316
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
-*/
+**/
 
 /*
 This program is free software; you can redistribute it and/or
@@ -36,6 +36,8 @@ class ProudCity_Admin_Menu{
      * @author SFNdesign, Curtis McHale
      *
      * @uses $instance->init()                      The main get it running function
+     *
+     * @return null
      */
     public static function instance(){
 
