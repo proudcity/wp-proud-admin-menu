@@ -161,15 +161,20 @@ class ProudCity_Admin_Menu{
 
         global $menu, $submenu;
 
+        /*
+        echo '<pre>';
+        print_r($menu);
+        echo '</pre>';
+        */
+
         /**
          *  Reindex the array so that anything I don't touch gets pushed
          *  to the bottom of the menu
          */
         $start_index = 999;
         $menu = array_combine(
-                range( $start_index,
-                    count($menu) + ( $start_index-1) ),
-                    array_values( $menu )
+            range($start_index, count($menu) + ($start_index-1)),
+            array_values($menu)
         );
 
         /** ---- unsetting stuff we don't need ----- **/
@@ -277,10 +282,10 @@ class ProudCity_Admin_Menu{
         }
 
         // Events
-        if ( false !== self::get_key( 'menu-posts-event', $menu ) ){
-            $events_key = self::get_key( 'menu-posts-event', $menu );
+        if (false !== self::get_key('menu-posts-event', $menu)) {
+            $events_key = self::get_key('menu-posts-event', $menu);
             $events = $menu[$events_key];
-            unset( $menu[$events_key] );
+            unset($menu[$events_key]);
             $menu[100] = $events;
         }
 
