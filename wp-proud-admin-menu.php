@@ -528,7 +528,7 @@ class ProudCity_Admin_Menu{
             $siteorigin = $menu[$siteorigin_key];
             unset( $menu[$siteorigin_key] );
             $menu[380] = $siteorigin;
-		}
+        }
 
         // Site Origin
         if (array_key_exists('toplevel_page_admin-page-siteorigin-installer', $menu) && false !== self::get_key( 'toplevel_page_admin-page-siteorigin-installer', $menu ) ){
