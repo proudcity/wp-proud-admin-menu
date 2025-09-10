@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
@@ -7,7 +7,7 @@ Version: 2025.09.10.1339
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
-*/
+**/
 
 /*
 This program is free software; you can redistribute it and/or
@@ -36,6 +36,8 @@ class ProudCity_Admin_Menu{
      * @author SFNdesign, Curtis McHale
      *
      * @uses $instance->init()                      The main get it running function
+     *
+     * @return null
      */
     public static function instance(){
 
@@ -84,7 +86,6 @@ class ProudCity_Admin_Menu{
         $active_plugins = get_option( 'active_plugins' );
 
         if (    in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins )              // broken link checker
-                || in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins )                               // wp rocket
                 || in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins )       // redirect manager
             ){
 
@@ -110,17 +111,6 @@ class ProudCity_Admin_Menu{
             );
         } // in_array redirects
 
-        if ( in_array( 'wp-rocket/wp-rocket.php', (array) $active_plugins ) ){
-            add_submenu_page(
-                'pc_tools',                 // parent_slug
-                'Caching',                  // page title
-                'Caching',                  // menu title
-                'edit_posts',               // cap
-                'pc_caching',   // menu_slug
-                [ 'Proud_Caching', 'render_page' ], // callback to show the content
-            );
-        } // in_array wp-rocket
-
         if ( in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins ) ){
             add_submenu_page(
                 'pc_tools',         // parent_slug
@@ -145,13 +135,13 @@ class ProudCity_Admin_Menu{
 
     public static function pc_tools(){
         // boo this is a hacky way to get something done to redirect
-        wp_redirect( admin_url( 'admin.php?page=view-broken-links' ) );
+        wp_redirect(admin_url('admin.php?page=view-broken-links'));
     }
 
     /**
      * Manually orders the array of menu items
      *
-     * @since 2023.08.31
+     * @since  2023.08.31
      * @access public
      * @author Curtis
      */
@@ -159,15 +149,20 @@ class ProudCity_Admin_Menu{
 
         global $menu, $submenu;
 
+        /*
+        echo '<pre>';
+        print_r($menu);
+        echo '</pre>';
+        */
+
         /**
          *  Reindex the array so that anything I don't touch gets pushed
          *  to the bottom of the menu
          */
         $start_index = 999;
         $menu = array_combine(
-                range( $start_index,
-                    count($menu) + ( $start_index-1) ),
-                    array_values( $menu )
+            range($start_index, count($menu) + ($start_index-1)),
+            array_values($menu)
         );
 
         /** ---- unsetting stuff we don't need ----- **/
@@ -286,9 +281,9 @@ class ProudCity_Admin_Menu{
 
         // Events
         if (array_key_exists('menu-posts-event', $menu) && false !== self::get_key( 'menu-posts-event', $menu ) ){
-            $events_key = self::get_key( 'menu-posts-event', $menu );
+            $events_key = self::get_key('menu-posts-event', $menu);
             $events = $menu[$events_key];
-            unset( $menu[$events_key] );
+            unset($menu[$events_key]);
             $menu[100] = $events;
         }
 
