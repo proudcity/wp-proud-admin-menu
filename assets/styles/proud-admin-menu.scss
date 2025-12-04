@@ -217,6 +217,63 @@ body:not(.role-admin) #adminmenu .update-plugins{display:none;}
 $font-size: 1.2em;
 #adminmenu{
 
+	.menu-wp-menu .dashicons-before:before{
+		content: '\f0c9';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-wp-customizer .dashicons-before:before{
+		content: '\f1fc';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+  .menu-icon-tools .dashicons-before:before,
+	.toplevel_page_pc_tools .dashicons-before:before{
+		content: '\f0ad';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.toplevel_page_publishpress-future .dashicons-before:before{
+		content: '\f017';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-users .dashicons-before:before{
+		content: '\f007';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-plugins .dashicons-before:before{
+		content: '\f1e6';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-mpp-gallery .dashicons-before:before{
+		content: '\f87c';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
+	.menu-icon-pw_policies .dashicons-before:before{
+		content: '\f31c';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
 	.menu-icon-agency .dashicons-before:before{
 		content: '';
 		display:inline-block;
@@ -314,6 +371,7 @@ $font-size: 1.2em;
 		font-size: $font-size;
 	}
 
+	.menu-icon-settings .dashicons-before:before,
 	.toplevel_page_proudsettings .dashicons-before:before{
 		content: '\f085';
 		display:inline-block;
