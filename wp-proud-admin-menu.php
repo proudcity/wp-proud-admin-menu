@@ -1,13 +1,14 @@
 <?php
+
 /**
 Plugin Name: ProudCity Admin Menu
 Plugin URI: https://proudcity.com
 Description: Builds out the WP Admin Menu in the order we want with the styles to suit our theme
-Version: 2025.12.04.1114
+Version: 2026.02.10.1501
 Author: ProudCity
 Author URI: https://proudcity.com
 License: GPLv2 or later
-**/
+ **/
 
 /*
 This program is free software; you can redistribute it and/or
@@ -25,7 +26,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-class ProudCity_Admin_Menu{
+class ProudCity_Admin_Menu
+{
 
     private static $instance;
 
@@ -39,13 +41,13 @@ class ProudCity_Admin_Menu{
      *
      * @return null
      */
-    public static function instance(){
+    public static function instance()
+    {
 
-        if ( ! self::$instance ){
+        if (! self::$instance) {
             self::$instance = new ProudCity_Admin_Menu();
             self::$instance->init();
         }
-
     } // instance
 
     /**
@@ -57,21 +59,21 @@ class ProudCity_Admin_Menu{
      * @uses $this->constants()                 Defines our constants
      * @uses $this->includes()                  Gets any includes we have
      */
-    public function init(){
+    public function init()
+    {
 
         $this->constants();
         $this->includes();
 
-        add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
 
-        add_action( 'admin_menu', array( $this, 'custom_menu_items' ), 1 );
-        add_action( 'admin_menu', array( $this, 'admin_menu_order' ), 9999 );
+        add_action('admin_menu', array($this, 'custom_menu_items'), 1);
+        add_action('admin_menu', array($this, 'admin_menu_order'), 9999);
 
         // Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
-        register_activation_hook( __FILE__, array( $this, 'activate' ) );
-        register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
-        register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall' ) );
-
+        register_activation_hook(__FILE__, array($this, 'activate'));
+        register_deactivation_hook(__FILE__, array($this, 'deactivate'));
+        register_uninstall_hook(__FILE__, array(__CLASS__, 'uninstall'));
     } // init
 
     /**
@@ -81,27 +83,28 @@ class ProudCity_Admin_Menu{
      * @author Curtis
      * @access public
      */
-    public static function custom_menu_items(){
+    public static function custom_menu_items()
+    {
 
-        $active_plugins = get_option( 'active_plugins' );
+        $active_plugins = get_option('active_plugins');
 
-        if (    in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins )              // broken link checker
-                || in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins )       // redirect manager
-            ){
+        if (
+            in_array('proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins)              // broken link checker
+            || in_array('safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins)       // redirect manager
+        ) {
 
             add_menu_page(
                 'Tools',            // page title
                 'Tools',            // menu_title
                 'edit_posts',       // cap
                 'pc_tools',         // menu_slug
-                [ 'ProudCity_Admin_Menu', 'pc_tools' ],                 // callback
+                ['ProudCity_Admin_Menu', 'pc_tools'],                 // callback
                 'dashicons-admin-tools',        // icon
                 '220',              // location
             );
-
         } // in_array
 
-        if ( in_array( 'safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins ) ){
+        if (in_array('safe-redirect-manager/safe-redirect-manager.php', (array) $active_plugins)) {
             add_submenu_page(
                 'pc_tools',         // parent_slug
                 'Tools',        // page title
@@ -111,7 +114,7 @@ class ProudCity_Admin_Menu{
             );
         } // in_array redirects
 
-        if ( in_array( 'proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins ) ){
+        if (in_array('proudcity-link-scanner/proudcity-link-scanner.php', (array) $active_plugins)) {
             add_submenu_page(
                 'pc_tools',         // parent_slug
                 'Broken Links',     // page title
@@ -121,7 +124,7 @@ class ProudCity_Admin_Menu{
             );
         } // in_array BLC
 
-        if ( in_array( 'fix-alt-text/fix-alt-text.php', (array) $active_plugins ) ){
+        if (in_array('fix-alt-text/fix-alt-text.php', (array) $active_plugins)) {
             add_submenu_page(
                 'pc_tools',         // parent_slug
                 'Fix Alt Text',     // page title
@@ -133,7 +136,8 @@ class ProudCity_Admin_Menu{
 
     }
 
-    public static function pc_tools(){
+    public static function pc_tools()
+    {
         // boo this is a hacky way to get something done to redirect
         wp_redirect(admin_url('admin.php?page=view-broken-links'));
     }
@@ -145,7 +149,8 @@ class ProudCity_Admin_Menu{
      * @access public
      * @author Curtis
      */
-    public static function admin_menu_order(){
+    public static function admin_menu_order()
+    {
 
         global $menu, $submenu;
 
@@ -161,7 +166,7 @@ class ProudCity_Admin_Menu{
          */
         $start_index = 999;
         $menu = array_combine(
-            range($start_index, count($menu) + ($start_index-1)),
+            range($start_index, count($menu) + ($start_index - 1)),
             array_values($menu)
         );
 
@@ -171,23 +176,23 @@ class ProudCity_Admin_Menu{
         /** the rest of the work coming up           **/
 
         // links
-		$links_key = self::get_key( 'menu-links', $menu );
-		unset( $menu[$links_key] );
+        $links_key = self::get_key('menu-links', $menu);
+        unset($menu[$links_key]);
 
         // comments
-		$comments_key = self::get_key( 'menu-comments', $menu );
-		unset( $menu[$comments_key] );
+        $comments_key = self::get_key('menu-comments', $menu);
+        unset($menu[$comments_key]);
 
         // separator 2
-		$sep2_key = self::get_key( 'separator2', $menu );
-		$sep2 = $menu[$sep2_key];
-		unset( $menu[$sep2_key] );
-		//$menu[270] = $sep1; If we want this in a new spot then we need to set it again
+        $sep2_key = self::get_key('separator2', $menu);
+        $sep2 = $menu[$sep2_key];
+        unset($menu[$sep2_key]);
+        //$menu[270] = $sep1; If we want this in a new spot then we need to set it again
 
         // separator last
-		$seplast_key = self::get_key( 'separator-last', $menu );
-		$seplast = $menu[$seplast_key];
-		unset( $menu[$seplast_key] );
+        $seplast_key = self::get_key('separator-last', $menu);
+        $seplast = $menu[$seplast_key];
+        unset($menu[$seplast_key]);
 		//$menu[270] = $sep1; If we want this in a new spot then we need to set it again
 
         /** ---- Setting the menu how we want it ----- **/
@@ -205,72 +210,72 @@ class ProudCity_Admin_Menu{
 
         // WP Dashboard
         if (false !== self::get_key('menu-dashboard', $menu)) {
-            $wp_dash_key = self::get_key( 'menu-dashboard', $menu );
+            $wp_dash_key = self::get_key('menu-dashboard', $menu);
             $wp_dash = $menu[$wp_dash_key];
-            unset( $menu[$wp_dash_key] );
+            unset($menu[$wp_dash_key]);
             $menu[20] = $wp_dash;
         }
 
         // PC Analytics
-        if (false !== self::get_key( 'toplevel_page_pc-analytics', $menu ) ){
-            $pca_key = self::get_key( 'toplevel_page_pc-analytics', $menu );
+        if (false !== self::get_key('toplevel_page_pc-analytics', $menu)) {
+            $pca_key = self::get_key('toplevel_page_pc-analytics', $menu);
             $pca = $menu[$pca_key];
-            unset( $menu[$pca_key] );
+            unset($menu[$pca_key]);
             $menu[30] = $pca;
         }
 
         // Site Kit
-        if (false !== self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu ) ){
-            $gsk_key = self::get_key( 'toplevel_page_googlesitekit-dashboard', $menu );
+        if (false !== self::get_key('toplevel_page_googlesitekit-dashboard', $menu)) {
+            $gsk_key = self::get_key('toplevel_page_googlesitekit-dashboard', $menu);
             $gsk = $menu[$gsk_key];
-            unset( $menu[$gsk_key] );
+            unset($menu[$gsk_key]);
             $menu[40] = $gsk;
         }
 
         // Pages
-        if (false !== self::get_key( 'menu-pages', $menu ) ){
-            $pages_key = self::get_key( 'menu-pages', $menu );
+        if (false !== self::get_key('menu-pages', $menu)) {
+            $pages_key = self::get_key('menu-pages', $menu);
             $pages = $menu[$pages_key];
-            unset( $menu[$pages_key] );
+            unset($menu[$pages_key]);
             $menu[50] = $pages;
         }
 
         // Posts/News
-        if (false !== (bool) self::get_key( 'menu-posts', $menu ) ){
-            $posts_key = self::get_key( 'menu-posts', $menu );
+        if (false !== (bool) self::get_key('menu-posts', $menu)) {
+            $posts_key = self::get_key('menu-posts', $menu);
             $posts = $menu[$posts_key];
             $posts[0] = 'News';
             $posts[6] = 'dashicons-text-page';
-            unset( $menu[$posts_key] );
+            unset($menu[$posts_key]);
             $menu[60] = $posts;
         }
 
         // Departments
-        if (false !== self::get_key( 'menu-posts-agency', $menu ) ){
-            $dep_key = self::get_key( 'menu-posts-agency', $menu );
+        if (false !== self::get_key('menu-posts-agency', $menu)) {
+            $dep_key = self::get_key('menu-posts-agency', $menu);
             $dep = $menu[$dep_key];
-            unset( $menu[$dep_key] );
+            unset($menu[$dep_key]);
             $menu[70] = $dep;
         }
 
         // Documents
-        if (false !== self::get_key( 'menu-posts-document', $menu ) ){
-            $doc_key = self::get_key( 'menu-posts-document', $menu );
+        if (false !== self::get_key('menu-posts-document', $menu)) {
+            $doc_key = self::get_key('menu-posts-document', $menu);
             $doc = $menu[$doc_key];
-            unset( $menu[$doc_key] );
+            unset($menu[$doc_key]);
             $menu[80] = $doc;
         }
 
         // Forms
-        if (false !== self::get_key( 'toplevel_page_gf_edit_forms', $menu ) ){
-            $gf_key = self::get_key( 'toplevel_page_gf_edit_forms', $menu );
+        if (false !== self::get_key('toplevel_page_gf_edit_forms', $menu)) {
+            $gf_key = self::get_key('toplevel_page_gf_edit_forms', $menu);
             $gf = $menu[$gf_key];
-            unset( $menu[$gf_key] );
+            unset($menu[$gf_key]);
             $menu[90] = $gf;
         }
 
         // Events
-        if (false !== self::get_key( 'menu-posts-event', $menu ) ){
+        if (false !== self::get_key('menu-posts-event', $menu)) {
             $events_key = self::get_key('menu-posts-event', $menu);
             $events = $menu[$events_key];
             unset($menu[$events_key]);
@@ -278,70 +283,70 @@ class ProudCity_Admin_Menu{
         }
 
         // Meetings
-        if (false !== self::get_key( 'menu-posts-meeting', $menu ) ){
-            $meet_key = self::get_key( 'menu-posts-meeting', $menu );
+        if (false !== self::get_key('menu-posts-meeting', $menu)) {
+            $meet_key = self::get_key('menu-posts-meeting', $menu);
             $meet = $menu[$meet_key];
-            unset( $menu[$meet_key] );
+            unset($menu[$meet_key]);
             $menu[110] = $meet;
         }
 
         // Payments
-        if (false !== self::get_key( 'menu-posts-question', $menu ) ){
-            $ans_key = self::get_key( 'menu-posts-question', $menu );
+        if (false !== self::get_key('menu-posts-question', $menu)) {
+            $ans_key = self::get_key('menu-posts-question', $menu);
             $ans = $menu[$ans_key];
             $ans[0] = 'Answers';
-            unset( $menu[$ans_key] );
+            unset($menu[$ans_key]);
             $menu[120] = $ans;
         }
 
         // Staff Members/Contacts
-        if (false !== self::get_key( 'menu-posts-staff-member', $menu ) ){
-            $contacts_key = self::get_key( 'menu-posts-staff-member', $menu );
+        if (false !== self::get_key('menu-posts-staff-member', $menu)) {
+            $contacts_key = self::get_key('menu-posts-staff-member', $menu);
             $contacts = $menu[$contacts_key];
             $contacts[0] = 'Contacts';
-            unset( $menu[$contacts_key] );
+            unset($menu[$contacts_key]);
             $menu[130] = $contacts;
         }
 
         // Issues
-        if (false !== self::get_key( 'menu-posts-issue', $menu ) ){
-            $issues_key = self::get_key( 'menu-posts-issue', $menu );
+        if (false !== self::get_key('menu-posts-issue', $menu)) {
+            $issues_key = self::get_key('menu-posts-issue', $menu);
             $issues = $menu[$issues_key];
-            unset( $menu[$issues_key] );
+            unset($menu[$issues_key]);
             $menu[140] = $issues;
         }
 
         // Payments
-        if (false !== self::get_key( 'menu-posts-payment', $menu ) ){
-            $pay_key = self::get_key( 'menu-posts-payment', $menu );
+        if (false !== self::get_key('menu-posts-payment', $menu)) {
+            $pay_key = self::get_key('menu-posts-payment', $menu);
             $pay = $menu[$pay_key];
             $pay[6] = 'dashicons-money-alt';
-            unset( $menu[$pay_key] );
+            unset($menu[$pay_key]);
             $menu[150] = $pay;
         }
 
         // Locations
-        if (false !== self::get_key( 'menu-posts-proud_location', $menu ) ){
-            $loc_key = self::get_key( 'menu-posts-proud_location', $menu );
+        if (false !== self::get_key('menu-posts-proud_location', $menu)) {
+            $loc_key = self::get_key('menu-posts-proud_location', $menu);
             $loc = $menu[$loc_key];
-            unset( $menu[$loc_key] );
+            unset($menu[$loc_key]);
             $menu[160] = $loc;
         }
 
         // Jobs
-        if (false !== self::get_key( 'menu-posts-job_listing', $menu ) ){
-            $jobs_key = self::get_key( 'menu-posts-job_listing', $menu );
+        if (false !== self::get_key('menu-posts-job_listing', $menu)) {
+            $jobs_key = self::get_key('menu-posts-job_listing', $menu);
             $jobs = $menu[$jobs_key];
             $jobs[0] = 'Jobs';
-            unset( $menu[$jobs_key] );
+            unset($menu[$jobs_key]);
             $menu[170] = $jobs;
         }
 
         // media
-        if (false !== self::get_key( 'menu-media', $menu ) ){
-            $media_key = self::get_key( 'menu-media', $menu );
+        if (false !== self::get_key('menu-media', $menu)) {
+            $media_key = self::get_key('menu-media', $menu);
             $media = $menu[$media_key];
-            unset( $menu[$media_key] );
+            unset($menu[$media_key]);
             $menu[180] = $media;
         }
 
@@ -358,10 +363,10 @@ class ProudCity_Admin_Menu{
         $menu[190] = $wp_menu;
 
         // PopUp Maker
-        if (false !== self::get_key( 'menu-posts-popup', $menu ) ){
-            $pop_key = self::get_key( 'menu-posts-popup', $menu );
+        if (false !== self::get_key('menu-posts-popup', $menu)) {
+            $pop_key = self::get_key('menu-posts-popup', $menu);
             $pop = $menu[$pop_key];
-            unset( $menu[$pop_key] );
+            unset($menu[$pop_key]);
             $menu[230] = $pop;
         }
 
@@ -374,7 +379,7 @@ class ProudCity_Admin_Menu{
         $customize = array(
             '0' => 'Customizer',
             '1' => 'read',
-            '2' => esc_url( $customizer_url ),
+            '2' => esc_url($customizer_url),
             '3' => '',
             '4' => 'menu-top menu-wp-customizer',
             '5' => 'menu-wp-customizer',
@@ -383,158 +388,158 @@ class ProudCity_Admin_Menu{
         $menu[210] = $customize;
 
         // PC Tools 220
-        if (false !== self::get_key( 'toplevel_page_pc_tools', $menu ) ){
-            $pct_key = self::get_key( 'toplevel_page_pc_tools', $menu );
+        if (false !== self::get_key('toplevel_page_pc_tools', $menu)) {
+            $pct_key = self::get_key('toplevel_page_pc_tools', $menu);
             $pct = $menu[$pct_key];
-            unset( $menu[$pct_key] );
+            unset($menu[$pct_key]);
             $menu[220] = $pct;
         }
 
         // Proud Setings
-        if (false !== self::get_key( 'toplevel_page_proudsettings', $menu ) ){
-            $pcs_key = self::get_key( 'toplevel_page_proudsettings', $menu );
+        if (false !== self::get_key('toplevel_page_proudsettings', $menu)) {
+            $pcs_key = self::get_key('toplevel_page_proudsettings', $menu);
             $pcs = $menu[$pcs_key];
-            unset( $menu[$pcs_key] );
+            unset($menu[$pcs_key]);
             $menu[230] = $pcs;
         }
 
         // Service Center
-        if (false !== self::get_key( 'toplevel_page_service-center', $menu ) ){
-            $service_key = self::get_key( 'toplevel_page_service-center', $menu );
+        if (false !== self::get_key('toplevel_page_service-center', $menu)) {
+            $service_key = self::get_key('toplevel_page_service-center', $menu);
             $service = $menu[$service_key];
-            unset( $menu[$service_key] );
+            unset($menu[$service_key]);
             $menu[240] = $service;
         }
 
         // MailOptin
-        if (false !== self::get_key( 'toplevel_page_mailoptin-settings', $menu ) ){
-            $mailopt_key = self::get_key( 'toplevel_page_mailoptin-settings', $menu );
+        if (false !== self::get_key('toplevel_page_mailoptin-settings', $menu)) {
+            $mailopt_key = self::get_key('toplevel_page_mailoptin-settings', $menu);
             $mailopt = $menu[$mailopt_key];
-            unset( $menu[$mailopt_key] );
+            unset($menu[$mailopt_key]);
             $menu[250] = $mailopt;
         }
 
         // Publish Press/Future
-        if (false !== self::get_key( 'toplevel_page_publishpress-future', $menu ) ){
-            $ppf_key = self::get_key( 'toplevel_page_publishpress-future', $menu );
+        if (false !== self::get_key('toplevel_page_publishpress-future', $menu)) {
+            $ppf_key = self::get_key('toplevel_page_publishpress-future', $menu);
             $ppf = $menu[$ppf_key];
-            unset( $menu[$ppf_key] );
+            unset($menu[$ppf_key]);
             $menu[260] = $ppf;
         }
 
         /** ---- Proud Admin menu items ----- **/
         // separator
-        if (false !== self::get_key( 'wp-menu-separator', $menu ) ){
-            $sep1_key = self::get_key( 'wp-menu-separator', $menu );
+        if (false !== self::get_key('wp-menu-separator', $menu)) {
+            $sep1_key = self::get_key('wp-menu-separator', $menu);
             $sep1 = $menu[$sep1_key];
-            unset( $menu[$sep1_key] );
+            unset($menu[$sep1_key]);
             $menu[270] = $sep1;
         }
 
         // Appearance
-        if (false !== self::get_key( 'menu-appearance', $menu ) ){
-            $app_key = self::get_key( 'menu-appearance', $menu );
+        if (false !== self::get_key('menu-appearance', $menu)) {
+            $app_key = self::get_key('menu-appearance', $menu);
             $app = $menu[$app_key];
-            unset( $menu[$app_key] );
+            unset($menu[$app_key]);
             // we don't want our editors to see this and this is the hacky way to remove wordpress admin menu items
-            if ( current_user_can( 'manage_options' ) ){
+            if (current_user_can('manage_options')) {
                 $menu[290] = $app;
             }
         }
 
         // Elasticpress
-        if (false !== self::get_key( 'toplevel_page_elasticpress', $menu ) ){
-            $ela_key = self::get_key( 'toplevel_page_elasticpress', $menu );
+        if (false !== self::get_key('toplevel_page_elasticpress', $menu)) {
+            $ela_key = self::get_key('toplevel_page_elasticpress', $menu);
             $ela = $menu[$ela_key];
-            unset( $menu[$ela_key] );
+            unset($menu[$ela_key]);
             $menu[300] = $ela;
         }
 
         // WP Users
-        if (false !== self::get_key( 'menu-users', $menu ) ){
-            $users_key = self::get_key( 'menu-users', $menu );
+        if (false !== self::get_key('menu-users', $menu)) {
+            $users_key = self::get_key('menu-users', $menu);
             $users = $menu[$users_key];
-            unset( $menu[$users_key] );
+            unset($menu[$users_key]);
             $menu[310] = $users;
         }
 
         // Tools
-        if (false !== self::get_key( 'menu-tools', $menu ) ){
-            $tools_key = self::get_key( 'menu-tools', $menu );
+        if (false !== self::get_key('menu-tools', $menu)) {
+            $tools_key = self::get_key('menu-tools', $menu);
             $tools = $menu[$tools_key];
-            unset( $menu[$tools_key] );
+            unset($menu[$tools_key]);
             $menu[320] = $tools;
         }
 
         // WP Settings
-        if (false !== self::get_key( 'menu-settings', $menu ) ){
-            $wpsettings_key = self::get_key( 'menu-settings', $menu );
+        if (false !== self::get_key('menu-settings', $menu)) {
+            $wpsettings_key = self::get_key('menu-settings', $menu);
             $wpsettings = $menu[$wpsettings_key];
-            unset( $menu[$wpsettings_key] );
+            unset($menu[$wpsettings_key]);
             $menu[330] = $wpsettings;
         }
 
 
         // Auth0
-        if (false !== self::get_key( 'toplevel_page_wpa0', $menu ) ){
-            $auth0_key = self::get_key( 'toplevel_page_wpa0', $menu );
+        if (false !== self::get_key('toplevel_page_wpa0', $menu)) {
+            $auth0_key = self::get_key('toplevel_page_wpa0', $menu);
             $auth0 = $menu[$auth0_key];
-            unset( $menu[$auth0_key] );
+            unset($menu[$auth0_key]);
             $menu[340] = $auth0;
         }
 
         // WP Mail SMTP
-        if (false !== self::get_key( 'toplevel_page_wp-mail-smtp', $menu ) ){
-            $smtp_key = self::get_key( 'toplevel_page_wp-mail-smtp', $menu );
+        if (false !== self::get_key('toplevel_page_wp-mail-smtp', $menu)) {
+            $smtp_key = self::get_key('toplevel_page_wp-mail-smtp', $menu);
             $smtp = $menu[$smtp_key];
-            unset( $menu[$smtp_key] );
+            unset($menu[$smtp_key]);
             $menu[350] = $smtp;
         }
 
         // Yoast SEO
-        if (false !== self::get_key( 'wpseo_dashboard', $menu ) ){
-            $seo_key = self::get_key( 'wpseo_dashboard', $menu );
+        if (false !== self::get_key('wpseo_dashboard', $menu)) {
+            $seo_key = self::get_key('wpseo_dashboard', $menu);
             $seo = $menu[$seo_key];
-            unset( $menu[$seo_key] );
+            unset($menu[$seo_key]);
             $menu[360] = $seo;
         }
 
         // Plugins
-        if (false !== self::get_key( 'menu-plugins', $menu ) ){
-            $plug_key = self::get_key( 'menu-plugins', $menu );
+        if (false !== self::get_key('menu-plugins', $menu)) {
+            $plug_key = self::get_key('menu-plugins', $menu);
             $plug = $menu[$plug_key];
-            unset( $menu[$plug_key] );
+            unset($menu[$plug_key]);
             $menu[370] = $plug;
         }
 
         // Site Origin
-        if (false !== self::get_key( 'toplevel_page_siteorigin', $menu ) ){
-            $siteorigin_key = self::get_key( 'toplevel_page_siteorigin', $menu );
+        if (false !== self::get_key('toplevel_page_siteorigin', $menu)) {
+            $siteorigin_key = self::get_key('toplevel_page_siteorigin', $menu);
             $siteorigin = $menu[$siteorigin_key];
-            unset( $menu[$siteorigin_key] );
+            unset($menu[$siteorigin_key]);
             $menu[380] = $siteorigin;
         }
 
         // Site Origin
-        if (array_key_exists('toplevel_page_admin-page-siteorigin-installer', $menu) && false !== self::get_key( 'toplevel_page_admin-page-siteorigin-installer', $menu ) ){
-            $siteorigin_installer_key = self::get_key( 'toplevel_page_admin-page-siteorigin-installer', $menu );
+        if (array_key_exists('toplevel_page_admin-page-siteorigin-installer', $menu) && false !== self::get_key('toplevel_page_admin-page-siteorigin-installer', $menu)) {
+            $siteorigin_installer_key = self::get_key('toplevel_page_admin-page-siteorigin-installer', $menu);
             $siteoriginInstaller = $menu[$siteorigin_installer_key];
-            unset( $menu[$siteorigin_installer_key] );
+            unset($menu[$siteorigin_installer_key]);
             $menu[382] = $siteoriginInstaller;
         }
 
         // hacking the Staff Members menu
         $submenu['edit.php?post_type=staff-member'][5][0] = 'All Contacts';
 
-// @todo get each item I know about in a variable
-// @todo put regular items in the order we want
-// @todo add admin items with custom background
-// @todo add unknown items above admin items
-//      - can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
-// @todo do_action so that plugins can hook this and add themselves in the proper spot
-// @todo conditional check for stuff like MailOptin becausee it is not present on every site
+        // @todo get each item I know about in a variable
+        // @todo put regular items in the order we want
+        // @todo add admin items with custom background
+        // @todo add unknown items above admin items
+        //      - can I add a custom colour if the currently signed in user is an admin to highlight menu items we need to deal with
+        // @todo do_action so that plugins can hook this and add themselves in the proper spot
+        // @todo conditional check for stuff like MailOptin becausee it is not present on every site
 
-/*
+        /*
         echo '<pre>';
         print_r( $submenu['edit.php?post_type=staff-member'] );
         echo '</pre>';
@@ -555,51 +560,50 @@ class ProudCity_Admin_Menu{
      * @param   array           $array                  required                The menu global
      * @return  int             $parent_key                                     The parent key
      */
-    private static function get_key( $searching_for, $array ){
+    private static function get_key($searching_for, $array)
+    {
 
         // if we never find the key we can skip the menu stuff
         $notfound = false;
 
-        foreach( $array as $main_key => $main_value ){
+        foreach ($array as $main_key => $main_value) {
             $parent_key = $main_key;
 
-            foreach( $main_value as $key => $value ){
+            foreach ($main_value as $key => $value) {
 
-                if ( $searching_for == $value ){
-                    return absint( $parent_key );
+                if ($searching_for == $value) {
+                    return absint($parent_key);
                 }
-
             } // foreach $main_value
 
         } // foreach $array as $main_key
 
         return (bool) $notfound;
-
     } // get_key
 
 
     /**
-    * Registers and enqueues scripts and styles
-    *
-    * @uses    wp_enqueue_style
-    * @uses    wp_enqueue_script
-    *
-    * @since   2023.08.24
-    * @author  SFNdesign, Curtis McHale
-    */
-    public function admin_enqueue(){
+     * Registers and enqueues scripts and styles
+     *
+     * @uses    wp_enqueue_style
+     * @uses    wp_enqueue_script
+     *
+     * @since   2023.08.24
+     * @author  SFNdesign, Curtis McHale
+     */
+    public function admin_enqueue()
+    {
 
-        $plugin_data = get_plugin_data( __FILE__ );
+        $plugin_data = get_plugin_data(__FILE__);
 
-        if ( 'local' === wp_get_environment_type() ){
+        if ('local' === wp_get_environment_type()) {
             $version = time();
         } else {
             $version = $plugin_data['Version'];
         }
 
         // styles plugin
-        wp_enqueue_style( 'wp_proud_admin_menu_styles', plugins_url( '/wp-proud-admin-menu/dist/styles/proud-admin-menu.css' ), '', esc_attr( $version ), 'all');
-
+        wp_enqueue_style('wp_proud_admin_menu_styles', plugins_url('/wp-proud-admin-menu/dist/styles/proud-admin-menu.css'), '', esc_attr($version), 'all');
     }
 
     /**
@@ -607,10 +611,10 @@ class ProudCity_Admin_Menu{
      *
      * @since 2023.08.24
      */
-    public function constants(){
+    public function constants()
+    {
 
-        define( 'PROUDCITY_ADMIN_MENU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-
+        define('PROUDCITY_ADMIN_MENU_PLUGIN_DIR', plugin_dir_path(__FILE__));
     }
 
     /**
@@ -620,36 +624,28 @@ class ProudCity_Admin_Menu{
      * @author Curtis McHale
      * @access public
      */
-    public function includes(){
-
-    }
+    public function includes() {}
 
     /**
      * Fired when plugin is activated
      *
      * @param   bool    $network_wide   TRUE if WPMU 'super admin' uses Network Activate option
      */
-    public function activate( $network_wide ){
-
-    } // activate
+    public function activate($network_wide) {} // activate
 
     /**
      * Fired when plugin is deactivated
      *
      * @param   bool    $network_wide   TRUE if WPMU 'super admin' uses Network Activate option
      */
-    public function deactivate( $network_wide ){
-
-    } // deactivate
+    public function deactivate($network_wide) {} // deactivate
 
     /**
      * Fired when plugin is uninstalled
      *
      * @param   bool    $network_wide   TRUE if WPMU 'super admin' uses Network Activate option
      */
-    public function uninstall( $network_wide ){
-
-    } // uninstall
+    public function uninstall($network_wide) {} // uninstall
 
 } // ProudCity_Admin_Menu
 
