@@ -172,12 +172,12 @@ body:not(.role-admin) #adminmenu .update-plugins{display:none;}
 	li.toplevel_page_siteorigin{
 
 		a{
-			background-color:#d0ecff;
+			background-color:#d0ecff !important;
 			color:black;
 
 			&:hover,
 			&:focus{
-				background-color:#bce4ff;
+				background-color:#bce4ff !important;
 			}
 		} // a
 
@@ -186,10 +186,10 @@ body:not(.role-admin) #adminmenu .update-plugins{display:none;}
 			left:218px;
 
 			a{
-				background-color:#ebebeb;
+				background-color:#ebebeb !important;
 				&:hover,
 				&:focus{
-					background-color:#c7c7c7;
+					background-color:#c7c7c7 !important;
 					color:black;
 					border-left-color:black;
 				}
@@ -205,7 +205,7 @@ body:not(.role-admin) #adminmenu .update-plugins{display:none;}
 		&.wp-menu-open{
 			.wp-submenu{
 				left:0;
-				width:218px;
+				width:218px !important;
 			}
 		}
 	}
