@@ -281,6 +281,13 @@ $font-size: 1.2em;
 		font-size: $font-size;
 	}
 
+	.menu-icon-proud-topic .dashicons-before:before{
+		content: '#';
+		display:inline-block;
+		font-family: 'FontAwesome';
+		font-size: $font-size;
+	}
+
 	.menu-icon-page .dashicons-before:before{
 		content: '';
 		display:inline-block;
